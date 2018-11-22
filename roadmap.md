@@ -3,71 +3,101 @@
 
 ## JavaScript
 
-* ES6
-* typescript ： 基本介绍 （产出 ： 落地方案评审）
+* ES6 【产出：文章】
+
+        异步处理(promise、async等) 
+        Array、Set、Map等新功能
+
+* typescript ： 基本介绍 【产出：文章、落地方案评审】
+
 * react
 
-        virtual DOM
-        redux、mobx 等flux框架
-        fiber新特性
-        SSR
+        virtual DOM 【产出：文章】
+        redux、mobx 等flux框架 【产出：文章】
+        fiber新特性 【产出：文章】
+        SSR 【产出：文章、落地可行性】
 
 ## CSS
 
-* 移动端适配 
-* flex布局
+* 移动端适配 【产出：文章、 落地方案】
+* flex布局 【产出：文章】
+* 前端常见布局CSS实现、Flex实现 【产出：文章、Demo演示】
+
+## 前端富交互
+
+* CSS3、SVG、Canvas等富交互
+
+* H5小游戏
 
 ## Node.js
 
 * koa框架： 
 
-        基本使用、常见中间件、洋葱圈模型 
-        koa源码分析，实现原理
+        基本使用、常见中间件、洋葱圈模型 【产出：文章】
+        koa源码分析，实现原理 【产出：文章】
     
-* 监控和运维 ： PM2 PM2.5调研  （产出 ： 监控系统）
+* 监控和运维 ： 
+
+        PM2 PM2.5调研  【产出：文章、线上监控搭建监控系统】
+        Node.js日志对接ELK 【产出：文章、线上对接ELK】
+
 * 深入 ： 
 
-        异步事件机制 （文章）
-        stream
-        性能调优 
+        异步事件机制、并发模型 【产出：文章】
+        stream 【产出：文章】
+        性能调优  【产出：文章、生产环境落地】
 
-## 安全
+* GraphQL介绍 【产出：文章】
 
-* xss、csrf
-* https
+## 前端安全
+
+* xss、csrf以及在Node.js中的落地 【产出：文章、生成环境落地】
+* https 【】
 * 流量劫持
 
 ## 小程序
 
+* 小程序能力、基本语法、开发流程、常见框架介绍 【产出：文章、LP页面落地】
+
 ## PWA
 
-    核心技术 ： service work 、 manifest、等  【产出 ： 具体业务页面落地】
+* pwd基础介绍，service work、manifest核心技术等  【产出 ：文章、具体页面落地】
 
 ## 工程化
 
-* webpack 
+* webpack 【产出：文章、生产使用】
 
     基本使用，常见load、plugin及其处理机制
     从零开始完成一个多页面项目webpack搭建
 
-* git
+* git 【产出：文章】
 
     git flow 
     高阶命令 ： revert、rebase、cherry-pick等
 
+
 ## ReactNative
 
-* 热更新
+* 热更新 【产出：文章、生成环境落地、开源方案】
 * 动画特效
+
+        3D陀螺仪
+        
+* RN版本升级 【产出：升级落地方案文章】
+* Flutter跨端技术介绍 【产出：文章】
 
 ## Hybrid
 
-* webview ： js和native通信原理
-* 性能优化 ： Sonic方案落地
+* webview ： js和native通信原理 【产出：文章】
+* 性能优化 ： Sonic方案落地 【产出：文章、生产环境落地】
 
 ## 计算机基础
 
 * http
-* 浏览器渲染流程
+
+        基础介绍 ： 状态码、header、缓存 【分享】
+        HTTPS ：
+
+* 浏览器渲染流程、原理 【产出：文章】
 
 
