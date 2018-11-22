@@ -5,11 +5,12 @@
 
 * JS基础 【产出：文章】
 
+        JS中的同源、跨域以及常见的解决方案
         JS中的正则表达式机器相关方法
         异步处理(promise、async等) 
         Array、Set、Map等新功能
         ES6中字符串、函数、对象等扩展
-        Proxy、Reflect介绍和在实战中的应用
+        Proxy、Reflect、Symbol 介绍和在实战中的应用
 
 * typescript ： 基本介绍 【产出：文章、落地方案评审】
 
