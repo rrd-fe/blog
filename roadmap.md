@@ -92,6 +92,8 @@
         
 * RN版本升级 【产出：升级落地方案文章】
 * Flutter跨端技术介绍 【产出：文章】
+* RN三端统一调研 【产出：文章、Demo】
+* RN升级react-natigation 【产出：调研文档、升级方案】
 
 ## Hybrid
 
