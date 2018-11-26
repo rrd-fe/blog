@@ -41,6 +41,7 @@
             12.10-12.16（下下周）
             （1）写demo整理文档
             （2）产出<<简化版Virtual DOM实现>> demo
+            （3） 分享
 
 * redux、mobx 等flux框架 【产出：文章】
 * fiber新特性 【产出：文章】
