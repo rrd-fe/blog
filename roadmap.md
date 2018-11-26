@@ -30,7 +30,17 @@
             Diff算法
             以及他们的作用
         产出：文章、分享、简化版Virtual DOM实现 Demo
-        时间：
+        排期：
+            11.26-12.2（本周）
+            （1）学习了解 Virtual DOM的模型、原理  
+
+            12.3-12.9（下周）
+            （1）学习Diff算法 
+            （2）产出 <<react Virtual DOM的原理>>文章
+
+            12.10-12.16（下下周）
+            （1）写demo整理文档
+            （2）产出<<简化版Virtual DOM实现>> demo
 
 * redux、mobx 等flux框架 【产出：文章】
 * fiber新特性 【产出：文章】
