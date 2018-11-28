@@ -204,8 +204,9 @@
             M站首页 PWA落地开发 （人人学院M站待定）
             分享并指导大家完成简单PWA页面(使用各种核心技术)
         时间：
-
-
+            11月27号-12月8号 PWA基础知识(Server works, Promise and fetch, Background sync, Web push notification)
+            12月9号-12月16号 产出分享文档和Demo
+            PWA落地等补课后再更新文档
 ## 工程化
 
 ### 自动化运营平台
