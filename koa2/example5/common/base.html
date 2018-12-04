@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="renderer" content="webkit">
+        <meta name="format-detection" content="telephone=no"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+        {% block header_content %}
+            <meta name="keywords" content="">
+            <meta name="description" content="">
+            <title>{{ title }}</title>
+        {% endblock %}
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/common/base.css">
+        <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+        <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+        <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+        <script src='http://libs.baidu.com/jquery/2.0.0/jquery.min.js'></script>
+        <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+        <!--  输出css 文件  -->
+        {% block block_head_css %}
+
+        {% endblock %}
+
+        <!--  输出js 文件  -->
+        {% block block_head_js %}
+
+        {% endblock %}
+
+    </head>
+
+    <body>
+
+
+        <div class="main-content">
+
+            {% block block_body %}
+            {% endblock %}
+
+        </div>
+
+    </body>
+
+</html>

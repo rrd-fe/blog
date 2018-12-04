@@ -1,0 +1,26 @@
+{% extends 'common/base.html'%}
+
+{% block header_content %}
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>后台登录页面</title>
+{% endblock %}
+
+{% block block_head_css %}
+<link rel="stylesheet" href="/template/admin/login/index.css">
+{% endblock %}
+
+{% block block_head_js %}
+<script src='/template/admin/login/index.js'></script>
+{% endblock %}
+
+
+{% block block_body %}
+   <div>
+      <div class='box'>
+         <div><input type="text" class='user' id='user' placeholder='用户名'></div>
+         <div><input type="password" class='pwd' id='pwd' placeholder='密码'></div>
+         <div><button  class='login' id='login'>登录</button></div>
+      </div>
+   </div>
+{% endblock %}

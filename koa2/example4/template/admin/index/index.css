@@ -1,0 +1,68 @@
+.box{
+    margin: 0 auto;
+    margin-top: 100px;
+    width: 1080px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.file{
+    height: 32px;
+    padding: 0 20px;
+    line-height: 32px;
+    font-weight: 400;
+    text-align: center;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    font-size: 14px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #1890ff;
+    border-color: #1890ff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.12);
+    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,.045);
+    box-shadow: 0 2px 0 rgba(0,0,0,.045);
+    position: relative;
+}
+.show{
+    width: 200px;
+    margin:0 10px;
+    padding-left: 10px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    line-height: 30px;
+    height: 30px;;
+}
+.file input{
+    width: 90px;
+    height: 32px;
+    opacity: 0;
+    position: absolute;
+    top:0;
+    left: 0;
+}
+table{
+    margin: 0 auto;
+    margin-top: 100px;
+    border: 1px solid #666;
+    width: 1080px;
+}
+th,td{
+    border: 1px solid #666;
+    text-align: center;
+    line-height: 30px;
+}
+.t1{
+    width: 20%;
+}
+.t2{
+    width: 50%;
+}
+.t3{
+    width: 30%;
+}
