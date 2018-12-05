@@ -585,6 +585,5 @@ app.on('error', err => {
 - ```ctx.assert(value, [status], [msg], [properties]):```当 !value 时，Helper 方法抛出类似于 .throw() 的错误。
 - ```respond:```为了绕过 Koa 的内置 response 处理，你可以显式设置 ctx.respond = false;。 如果您想要写入原始的 res 对象而不是让 Koa 处理你的 response，请使用此参数。
 
-[学习资料：廖雪峰koa入门](https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001471087582981d6c0ea265bf241b59a04fa6f61d767f6000)
 
 [官方文档地址：https://koa.bootcss.com](https://koa.bootcss.com/)
