@@ -1,4 +1,4 @@
-# 打开TypeScript之门
+# TypeScript--JavaScript的超集
 
 ## 前言
 
