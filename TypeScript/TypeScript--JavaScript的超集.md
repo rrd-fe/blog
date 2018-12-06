@@ -691,6 +691,6 @@ console.log(Direction[8] === "WEST"); // true
 
 - [Namespaces](https://www.tslang.cn/docs/handbook/namespaces.html)
 
-- [Decorators](https://www.tslang.cn/docs/handbook/decorators.html)（
+- [Decorators](https://www.tslang.cn/docs/handbook/decorators.html)
 
 - [Mixins](https://www.tslang.cn/docs/handbook/mixins.html)
