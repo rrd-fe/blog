@@ -1,6 +1,7 @@
 React虚拟DOM简单分享
 =========
 ####一.什么是虚拟dom
+
 虚拟DOM就是一个普通的JS对象，通常拥有三个属性，type, props, children。但无状态组件出来后，children改放到props中。此外，有些元素还有ref属性，可以是字符串与函数。在数组里，为了提高diff速度，又多出了key属性。bable会将JSX这些属性转换为一个VNode对象。这是虚拟DOM的最小单元。所有虚拟DOM会组成一棵树，叫虚拟DOM树。
  > 在Web开发中，需要将数据的变化实时反映到UI上，这时就需要对DOM进行操作，但是复杂或频繁的DOM操作通常是性能瓶颈产生的原因,并且DOM是很慢的。如果我们把一个简单的div元素的属性都打印出来，你会看到：
  
@@ -43,7 +44,7 @@ React.createElement('ul',{ id: 'list' },
 ~~~
 
 经过react的createElement处理变成
-![虚拟dom图](./assets/domtu.png);
+![虚拟dom图](./assets/domtu.png)
 
 那具体怎么实现呢？看一下Element方法的具体实现：
 
@@ -125,13 +126,16 @@ React源码中有三种内部组件：
 - ReactDOMTextComponent用来管理text node对应的ReactElement。
 - ReactDOMComponent用来管理html标签对应的ReactElement。
 - ReactCompositeComponent用来管理自定义组件对应的ReactElement。
+
 它们都有以下四个重要方法来管理组件：
 
 - construct用来接收ReactElement进行初始化。
 - mountComponent用来生成ReactElement对应的真实DOM节点。
 - unmountComponent卸载DOM节点，解绑事件。
 - receiveComponent用来接收虚拟DOM的下一个状态，然后进行更新
+
 #####二.如果直接操作原生DOM
+
 如果没有 Virtual DOM，简单来说就是直接重置 innerHTML。这样操作，在一个大型列表所有数据都变了的情况下，还算是合理，但是，当只有一行数据发生变化时，它也需要重置整个 innerHTML，这时候显然就造成了大量浪费。
 比较innerHTML 和Virtual DOM 的重绘过程如下：
 
@@ -144,6 +148,7 @@ React源码中有三种内部组件：
 
 
 ####三.什么是 DOM Diff 算法
+
 传统 diff 算法的复杂度为 O(n^3)，显然这是无法满足性能要求的。React 通过制定大胆的策略，将 O(n^3) 复杂度的问题转换成 O(n) 复杂度的问题。
 diff算法在Virtual-DOM中用于比较两个VNode树之间的不同，得到patch对象，之后根据patch对象来对真实DOM树进行修改
 Virtual-DOM的执行过程:
@@ -178,9 +183,11 @@ Virtual-DOM的执行过程:
 注意：当出现节点跨层级移动时，并不会出现想象中的移动操作，而是出现新建和删除操作。React 官方建议不要进行 DOM 节点跨层级的操作。在开发组件时，保持稳定的 DOM 结构会有助于性能的提升。例如，可以通过 CSS 隐藏或显示节点，而不是真的移除或添加 DOM 节点。
 
 ![move](./assets/move.png)
+
 React diff 的执行情况：create A -> create B -> create C -> delete A。
 
 #####component diff
+
 React 是基于组件构建应用的，对于组件间的比较所采取的策略也是简洁高效。
 如果是同一类型的组件，按照原策略继续比较 virtual DOM tree。如果不是，则替换整个组件下的所有子节点。
 
@@ -188,6 +195,7 @@ React 是基于组件构建应用的，对于组件间的比较所采取的策�
 ![类型改变](./assets/replace.png)
 
 #####element diff
+
 当节点处于同一层级时，React diff 提供了三种节点操作
 1. INSERT_MARKUP（插入），新的 component 类型不在老集合里， 即是全新的节点，需要对新节点执行插入操作。
 
