@@ -1,0 +1,43 @@
+{
+  "name": "react-diff",
+  "version": "1.0.0",
+  "description": "react diff",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --hot",
+    "open": "webpack-dev-server --open",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qiyuetou/react-diff.git"
+  },
+  "keywords": [
+    "diff",
+    "react",
+    "code"
+  ],
+  "author": "qiyuetou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qiyuetou/react-diff/issues"
+  },
+  "homepage": "https://github.com/qiyuetou/react-diff#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.4.2",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  },
+  "dependencies": {}
+}
