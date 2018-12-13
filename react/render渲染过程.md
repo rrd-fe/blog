@@ -1,5 +1,7 @@
 ##React中render首次渲染过程
+
 ####一.什么是虚拟dom
+
 虚拟DOM就是一个普通的JS对象，通常拥有三个属性，type, props, children。但无状态组件出来后，children改放到props中。此外，有些元素还有ref属性，可以是字符串与函数。在数组里，为了提高diff速度，又多出了key属性。bable会将JSX这些属性转换为一个VNode对象。这是虚拟DOM的最小单元。所有虚拟DOM会组成一棵树，叫虚拟DOM树。
  > 在Web开发中，需要将数据的变化实时反映到UI上，这时就需要对DOM进行操作，但是复杂或频繁的DOM操作通常是性能瓶颈产生的原因,并且DOM是很慢的。如果我们把一个简单的div元素的属性都打印出来，你会看到：
  
@@ -153,7 +155,7 @@ react渲染过程
 
 1. 调用React.render方法，将我们的element根虚拟节点渲染到container元素中。element可以是一个字符串文本元素，也可以是如上介绍的ReactElement(分为DOM Elements, Component Elements)。
 2. 根据element的类型不同，分别实例化ReactDOMTextComponent, ReactDOMComponent, ReactCompositeComponent类。这些类用来管理ReactElement,负责将不同的ReactElement转化成DOM(mountComponent方法),负责更新DOM(receiveComponent方法，updateComponent方法, 如下会介绍)等。
-3. ReactCompositeComponent实例调用mountComponent方法后内部调用render方法，返回了DOM Elements。再对如图的步骤2️⃣递归。
+3. ReactCompositeComponent实例调用mountComponent方法后内部调用render方法，返回了DOM Elements。再对如图的步骤2递归。
 
 
 
