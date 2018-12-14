@@ -1,0 +1,41 @@
+{% extends 'common/base.html'%}
+
+{% block header_content %}
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>查看qq秀</title>
+{% endblock %}
+
+{% block block_head_css %}
+ <link rel="stylesheet" href="/template/home/look/index.css">
+{% endblock %}
+
+{% block block_head_js %}
+ <script src='/template/home/look/index.js'></script>    
+{% endblock %}
+
+
+{% block block_body %}
+    
+    <div class='box'>
+        <button class="buttonPre">去上一页</button>
+        <button class="buttonNext">去下一页</button>
+        {% for bg in data.backGroundImage %}
+        <div style="background:url('{{bg}}') no-repeat" class='bg'></div>
+        {% endfor %}
+        <div class="imgbox_top">
+            {% for img in data.picArr.slice(0,4) %}
+            <div class='myImg'>
+              <img src="{{img}}" alt="">
+            </div>
+            {% endfor %}
+        </div>
+        <div class="imgbox_bottom">
+            {% for img in data.picArr.slice(4) %}
+            <div class='myImg'>
+              <img src="{{img}}" alt="">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
