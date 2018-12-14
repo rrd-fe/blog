@@ -1,54 +1,43 @@
-import React from "./React";
-
-
 /**
- * ReactDOMTextComponent组件
+ * Created by daifei on 2018/11/27
  */
-// var TextComponent = "hello world!";
-// var root = document.getElementById("root");
-//
-// React.render(TextComponent, root);
+// 'use strict';
 
-/**
- * ReactDOMComponent组件
- */
-// function sayHello() {
-//   alert("hello");
-// }
-// var div = React.createElement("div", {}, "jason");
-// var DOMComponent = React.createElement(
-//   "div",
-//   { key: "jason", age: 22, onclick: sayHello },
-//   "hello worlds!",
-//   div
-// );
+ //import React, { Component } from 'react';
 
-
-/**
- * ReactCompositeComponent组件
- */
-//var TextComponent = "hello world!";
-
-// var DOMComponent = React.createElement(
-//     "div", { key: "jason", age: 22, }, "hello worlds!",
-//     React.createElement("div", {}, "jason")
-// );
+ //import ReactDOM from 'react-dom';
 
 
 
-var CommentBox = React.createClass({
-    render: function() {
-        return (
-            <ul class="ul">
-                <li class="li-one">NO1list<b>a</b></li>
-                <li class="li-two">NO2list<b>b</b></li>
-                <li class="li-three">NO3list<b>c</b></li>
-            </ul>
-        );
+
+
+"use strict";
+import React from './Virtual Dom/React';
+import ReactDom from './Virtual Dom/ReactDom';
+
+
+
+class Ele extends React.Component{
+    constructor(props){
+        super(props);
     }
-});
+    onChange(){
+        console.log(1111);
+    }
+    render(){
+        return(
+            <ul id='ul'>
+                <li class='list'>Item1<b>384</b>677</li>
+                <li class='list'>Item2<b>345</b>677</li>
+                <li class='list'>Item1<b>346</b>677</li>
+            </ul>
 
-var CommentList = React.createElement(CommentBox);
-var root = document.getElementById("root");
+        )
+    }
+}
+const Box = React.createElement(Ele)
+ReactDom.render(<Ele/>,document.getElementById('root'));
 
-React.render(CommentList, root);
+
+
+
