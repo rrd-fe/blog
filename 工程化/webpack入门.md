@@ -313,8 +313,6 @@ Sass 和 Less之类的预处理器是对原生CSS的拓展，它们允许你使�
 * NoErrorsPlugin 报错但不退出webpack进程
 * HtmlWebpackPlugin 生成html
 
-## TODO 一个简单的 webpack 配置
-
 ## 参考
 
 * [webpack究竟做了什么](https://segmentfault.com/a/1190000015973544)
