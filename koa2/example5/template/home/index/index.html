@@ -1,0 +1,36 @@
+{% extends 'common/base.html'%}
+
+{% block header_content %}
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>主页</title>
+{% endblock %}
+
+{% block block_head_css %}
+ <link rel="stylesheet" href="/template/home/index/index.css">
+{% endblock %}
+
+{% block block_head_js %}
+ <script src='/template/home/index/index.js'></script>    
+{% endblock %}
+
+
+{% block block_body %}
+<nav>
+  <ul>
+    <li>
+      <a href="/">首页</a>
+    </li>
+    <li>
+      <a href="/look/1">QQ秀</a>
+    </li>
+    <li>
+      <a href="/login">后台登录</a>
+    </li>
+    <li>
+      <a href="/notfound">其他</a>
+    </li>
+  </ul>
+</nav>
+<div class='div'>Koa2</div>
+{% endblock %}
