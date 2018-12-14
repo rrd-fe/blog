@@ -82,7 +82,7 @@
     req_id: "some-uuid-for-request",
     //本次请求的用户ID
     uid: "",
-    //本次请求的客户端相关数据
+    //本次请求的客户端相关数据，通过  ctx.logger 打日志时，自动加上
     d: {
         url: "/some/path?include-query",
         //客户端ip
@@ -129,7 +129,7 @@
 * `trace`: node中业务层打的日志，如果异常，能帮助定位本次请求相关问题
 * `client-res`: 结束client的请求，打印本次请求的http code，本次请求处理时间等，由框架统一打，开发 **不** 关心
 
-开发同学在打日志时，应该谨慎的选择级别，`INFO`级别和以上，都应该能对定位问题、具体业务统计需求有要求，才能使用。大部分情况下，可以使用 `DEBUG` 级别，线上 **不会** 开启`DEBUG`级别。
+开发同学在打日志时，应该谨慎的选择级别，`INFO`(含)级别以上，都应该能对定位问题、具体业务统计需求有要求，才能使用。大部分情况下，可以使用 `DEBUG` 级别，线上 **不会** 开启`DEBUG`级别。
 
 ### 具体方法调用
 
@@ -154,6 +154,7 @@ ctx.logger.info({msg: "user login", mobile: "13612344321"});
 
 * [最佳日志实践（v2.0）](https://zhuanlan.zhihu.com/p/27363484)
 * [Node 框架接入 ELK 实践总结](https://cloud.tencent.com/developer/article/1363118)
+* [大搜车NodeJS日志规范化与分析监控](http://f2e.souche.com/blog/ri-zhi-gui-fan-hua-yu-fen-xi-jian-kong/)
 * [请自查！这些优秀日志实践准则，你做到了几点？](https://dbaplus.cn/news-134-1658-1.html)
 * [日志最佳实践](http://angelo-chan.github.io/2016/01/05/%E6%97%A5%E5%BF%97%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/)
 * [When to use the different log levels](https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels)
