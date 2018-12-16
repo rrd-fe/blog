@@ -1,0 +1,26 @@
+{% extends 'common/base.html'%}
+
+{% block header_content %}
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>404</title>
+{% endblock %}
+
+{% block block_head_css %}
+ <link rel="stylesheet" href="/template/home/notfound/index.css">
+{% endblock %}
+
+{% block block_head_js %}
+ <script src='/template/home/nodefound/index.js'></script>    
+{% endblock %}
+
+
+{% block block_body %}
+<div id='oopss'>
+    <div id='error-text'>
+        <span>404</span>
+        <p>PAGE NOT FOUND</p>
+        <p class='hmpg'><a href='/' class="back">Back To Home</a></p>
+    </div>
+</div>
+{% endblock %}

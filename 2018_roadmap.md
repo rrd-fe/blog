@@ -267,6 +267,19 @@
             11月27号-12月8号 PWA基础知识(Server works, Promise and fetch, Background sync, Web push notification)
             12月9号-12月16号 产出分享文档和Demo
             PWA落地等补课后再更新文档
+
+## Webview @李锐
+
+        内容：
+            1. WebView使用基础
+            2. Java和JS代码相互调用
+            3. Chrome调试及常见错误
+        产出：
+            一个简单Android加载Webview的Demo
+        时间：
+            12月16号-12月26号 Webview基础, WebChromeClient常用方法
+            12月27号-1月4号 Java和JS代码相互调用
+            1月5号-1月10号 产出分享文档
 ## 工程化
 
 ### 自动化运营平台
@@ -320,6 +333,10 @@
 
     git flow
     高阶命令 ： revert、rebase、cherry-pick等
+    
+## Swift
+
+    Swift 4.2 New feature & Migration
 
 ## 计算机基础
 

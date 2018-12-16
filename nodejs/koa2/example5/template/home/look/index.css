@@ -1,0 +1,66 @@
+.box{
+    margin:  0 auto;
+    width: 980px;
+    position: relative;
+}
+
+.box>.bg{
+    width: 100%;
+    height: 268px;
+    background-size:100% 100%; 
+}
+.imgbox_top{
+    position: absolute;
+    top: 285px;
+    left: 50px;
+}
+.imgbox_bottom{
+    position: absolute;
+    top: 595px;
+    left: 50px;
+}
+.myImg{
+    width: 140px;
+    height: 226px;
+    margin-right: 45px;
+    margin-bottom: 50px;
+    float: left;
+}
+.myImg>img{
+    width: 100%;
+    height: 100%;
+}
+
+
+.buttonNext{
+background:#000;
+opacity: 0.32;
+color:#fff;
+border:none;
+position:fixed;
+right: 272px;
+height: 30px;
+font-size: 1.2em;
+padding: 0 1em;
+cursor:pointer;
+outline:none;
+}
+
+
+.buttonPre{
+    background:#000;
+    opacity: 0.32;
+    color:#fff;
+    border:none;
+    position:fixed;
+    height: 30px;
+    font-size: 1.2em;
+    padding: 0 1em;
+    cursor:pointer;
+    outline:none;
+}
+.buttonNext:hover,.buttonPre:hover{
+    opacity: 1;
+}
+
+ 
