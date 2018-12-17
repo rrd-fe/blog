@@ -93,7 +93,7 @@
     //本次node请求的处理时间，毫秒
     tm: 500,
     //该日志相关的上下文数据，尽量拼成一个字符串，放在 extra 里
-    extra: '',
+    extra: "",
 
     //ERROR 级别日志，最好包含error相关信息，比如请求后端相关参数等
     err: {
@@ -105,7 +105,7 @@
     service_req: {
         host: "",
         path: "",
-        payload: {}
+        payload: ""
     },
     service_res: {
         //http状态码
@@ -143,8 +143,8 @@
 ctx.logger.debug({msg: "", "extra": "a=1 b=2 c=value"});
 ctx.logger.info({msg: "xxx", "extra": "其他的额外字段"});
 ctx.logger.warn({msg: "xxx", "extra": "额外上下文数据"});
-//ERROR级别日志，必须提供两个参数，第一个是 Error 对象，第二个参数是相关的其他字段
-ctx.logger.error(err, { arg1: "value1", arg2: "value2"});
+//ERROR级别日志，应该提供 Error 对象
+ctx.logger.error({msg: 'xxx', err: error, extra: ""});
 ```
 
 注意1，额外的参数，推荐存放在 `extra` 字段中，统一拼成 `string`；如果确实有必要单独出每个字段， **禁止** 额外的参数占用上述通用字段名！！
