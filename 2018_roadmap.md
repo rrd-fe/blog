@@ -358,3 +358,7 @@
 
 * 从浏览器出入URL到最终呈现经过了哪些环节？
 * 发现网页变慢了怎么办？
+
+## 翻译计划
+
+* [console.log](https://medium.com/@mattburgess/beyond-console-log-2400fdf4a9d8)
