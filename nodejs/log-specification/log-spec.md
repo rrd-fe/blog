@@ -77,7 +77,7 @@
     //事件类型：在 visit 的日志类型下，还会细分不同的事件，比如 client-req、client-res、 普通trace、请求后端service-start, service-end, service-err等。
     event: "trace",
     //客户端ID，追踪用户、设备会话。在web端，可以是长期的cookie；在APP端，可以是device-id等
-    did: "",
+    rrdid: "",
     //本次请求的惟一ID，串联本次请求的所有相关日志
     req_id: "some-uuid-for-request",
     //本次请求的用户ID
