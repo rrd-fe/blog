@@ -77,7 +77,7 @@
     //事件类型：在 visit 的日志类型下，还会细分不同的事件，比如 client-req、client-res、 普通trace、请求后端service-start, service-end, service-err等。
     event: "trace",
     //客户端ID，追踪用户、设备会话。在web端，可以是长期的cookie；在APP端，可以是device-id等
-    did: "",
+    rrdid: "",
     //本次请求的惟一ID，串联本次请求的所有相关日志
     req_id: "some-uuid-for-request",
     //本次请求的用户ID
@@ -90,6 +90,10 @@
         //客户端的 userAgent
         ua: ""
     },
+    //本次node请求的处理时间，毫秒
+    tm: 500,
+    //该日志相关的上下文数据，尽量拼成一个字符串，放在 extra 里
+    extra: "",
 
     //ERROR 级别日志，最好包含error相关信息，比如请求后端相关参数等
     err: {
@@ -101,7 +105,7 @@
     service_req: {
         host: "",
         path: "",
-        payload: {}
+        payload: ""
     },
     service_res: {
         //http状态码
@@ -136,17 +140,19 @@
 针对打印 `visit`类型的日志，调用 `ctx.logger`(基于`Koa`的框架) 属性打日志，推荐参数都传递 `JSON`，具体方法如下：
 
 ```javascript
-ctx.logger.debug({ msg: "", "a": "value", "k2": "v2"});
-ctx.logger.info({msg: "xxx", anotherField: ""});
-ctx.logger.warn({msg: "xxx", field1: "", field2: "v2"});
-//ERROR级别日志，必须提供两个参数，第一个是 Error 对象，第二个参数是相关的其他字段
-ctx.logger.error(err, { arg1: "value1", arg2: "value2"});
+ctx.logger.debug({msg: "", "extra": "a=1 b=2 c=value"});
+ctx.logger.info({msg: "xxx", "extra": "其他的额外字段"});
+ctx.logger.warn({msg: "xxx", "extra": "额外上下文数据"});
+//ERROR级别日志，应该提供 Error 对象
+ctx.logger.error({msg: 'xxx', err: error, extra: ""});
 ```
 
-注意，基础数据中的`msg`字段，**禁止** 包含具体的上下文数据，和该日志相关的上下文数据，应该放在单独的字段中。比如，某个用户登录接口，希望统计调用次数，可以这样打印:
+注意1，额外的参数，推荐存放在 `extra` 字段中，统一拼成 `string`；如果确实有必要单独出每个字段， **禁止** 额外的参数占用上述通用字段名！！
+
+注意2，基础数据中的`msg`字段，**禁止** 包含具体的上下文数据，和该日志相关的上下文数据，应该拼成字符串，放在单独的 `extra` 字段中。比如，某个用户登录接口，希望统计调用次数，可以这样打印:
 
 ```javascript
-ctx.logger.info({msg: "user login", mobile: "13612344321"});
+ctx.logger.info({msg: "user login", "extra": 'mobile=18712387101 code=xxxx k3=value3'});
 ```
 
 
