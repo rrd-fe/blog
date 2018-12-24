@@ -27,7 +27,7 @@
 
 `express` 和 `koa` 里默认使用 `cookie` 第三方库，有一个签名的功能，在设置cookie的时候，可以指定该cookie是否需要签名。防止恶意用户伪造、篡改cookie的值。
 
-###　浏览器发送规则
+### 浏览器发送规则
 
 浏览器在请求某个服务时，会遍历在该服务下，存储的所有cookie，找到 **满足条件** 的cookie，添加到本次请求的 `requst header`里。匹配条件，就是根据每个cookie，在被设置时，指定的一系列属性。比如 `domain` 会判断本次请求的域名是否 **从属于** cookie指定的域名；`path` 会判断本次请求的 path，是否 **从属于** cookie指定的path；`secure`，判断本次请求是否是 `https`；`SameSite`，TODO……
 
