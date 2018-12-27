@@ -1,5 +1,8 @@
 # react-native导航
 
+## react-navigation VS react-native-navigation
+
+
 ## 参考资料
 
 * [react-navigation-v1-to-v2](https://shift.infinite.red/upgrading-from-react-navigation-v1-to-v2-312d932329ba)
