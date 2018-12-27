@@ -26,7 +26,7 @@ class Upload extends React.Component{
    upload(){
        let _this = this;
         if(!this.file){alert('请添加文件');return};
-        axios.post('/uploadimg',this.file,{
+        axios.post('/upload',this.file,{
             headers: {'Content-Type': 'multipart/form-data'}
         }
         ).then(res=>{

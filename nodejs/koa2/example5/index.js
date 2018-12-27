@@ -11,7 +11,7 @@ app.keys = ['some secret hurr'];
  
 const CONFIG = {
   key: 'koa:sess', 
-  maxAge: 10000,
+  maxAge: 60*1000,
   renew: false, 
 };
 

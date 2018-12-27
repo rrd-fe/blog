@@ -528,16 +528,16 @@ use(fn) {
 
 ```
   callback() {
-    const fn = compose(this.middleware);
+   const fn = compose(this.middleware);
 
-    if (!this.listeners('error').length) this.on('error', this.onerror);
+    if (!this.listenerCount('error')) this.on('error', this.onerror);
 
-    return (req, res) => {
-      res.statusCode = 404;
+    const handleRequest = (req, res) => {
       const ctx = this.createContext(req, res);
-      onFinished(res, ctx.onerror);
-      fn(ctx).then(() => respond(ctx)).catch(ctx.onerror);
+      return this.handleRequest(ctx, fn);
     };
+
+    return handleRequest;
   }
 ```
 ##### 其中的第一行代码中的 compose()专门被封装在compose.js中，这个文件很简单只有一个函数
@@ -582,53 +582,52 @@ function compose (middleware) {
 
 ```
 
-  function callback() {
-    var middleware = this.middleware;
-    const fn = function compose(context, next) {
-        let index = -1
-        return dispatch(0)
-        function dispatch (i) {
-          if (i <= index) return Promise.reject(new Error('next() called multiple times'))
-          index = i
-          let fn = middleware[i]
-          if (i === middleware.length) fn = next
-          if (!fn) return Promise.resolve()
-          try {
-            return Promise.resolve(fn(context, function next () {
-              return dispatch(i + 1)
-            }))
-          } catch (err) {
-            return Promise.reject(err)
-          }
+callback() {
+
+    const fn = function (context, next) {
+      // last called middleware #
+      let index = -1
+      return dispatch(0)
+      function dispatch (i) {
+        if (i <= index) return Promise.reject(new Error('next() called multiple times'))
+        index = i
+        let fn = middleware[i]
+        if (i === middleware.length) fn = next
+        if (!fn) return Promise.resolve()
+        try {
+          return Promise.resolve(fn(context, function next () {
+            return dispatch(i + 1)
+          }))
+        } catch (err) {
+          return Promise.reject(err)
         }
       }
+    }
 
-    if (!this.listeners('error').length) this.on('error', this.onerror);
-
-    return (req, res) => {
-      res.statusCode = 404;
+  if (!this.listenerCount('error')) this.on('error', this.onerror);
+    const handleRequest = (req, res) => {
       const ctx = this.createContext(req, res);
-      onFinished(res, ctx.onerror);
-      fn(ctx).then(() => respond(ctx)).catch(ctx.onerror);
+      return this.handleRequest(ctx, fn);
     };
+
+    return handleRequest;
   }
+
 ```
 
 #### 当有请求发生的时候koa2做了些啥呢？？？
 
 ```
   (req, res) => {
-      res.statusCode = 404;
-      const ctx = this.createContext(req, res);
-      onFinished(res, ctx.onerror);
-      fn(ctx).then(() => respond(ctx)).catch(ctx.onerror);
+       const ctx = this.createContext(req, res);
+       return this.handleRequest(ctx, fn);
     };
 ```
 
 ##### 其中的```ctx = this.createContext(req, res);```将req和res挂载到ctx上面，并且在ctx上面挂载了一些方法并返回ctx
 
 ```
-createContext(req, res) {
+ createContext(req, res) {
     const context = Object.create(this.context);
     const request = context.request = Object.create(this.request);
     const response = context.response = Object.create(this.response);
@@ -638,19 +637,27 @@ createContext(req, res) {
     request.ctx = response.ctx = context;
     request.response = response;
     response.request = request;
-    context.onerror = context.onerror.bind(context);
     context.originalUrl = request.originalUrl = req.url;
-    context.cookies = new Cookies(req, res, {
-      keys: this.keys,
-      secure: request.secure
-    });
-    context.accept = request.accept = accepts(req);
     context.state = {};
     return context;
   }
 ```
 
-##### 接下来的```onFinished(res, ctx.onerror);```其实就是当一个请求结束、完成或者发生错误时候执行回调ctx.onerror
+#####接下来的```this.handleRequest(ctx, fn)```如下：
+
+```
+ handleRequest(ctx, fnMiddleware) {
+    const res = ctx.res;
+    res.statusCode = 404;
+    const onerror = err => ctx.onerror(err);
+    const handleResponse = () => respond(ctx);
+    onFinished(res, onerror);
+    return fnMiddleware(ctx).then(handleResponse).catch(onerror);
+  }
+```
+
+##### 其中的```onFinished(res, ctx.onerror);```其实就是当一个请求结束、完成或者发生错误时候执行回调ctx.onerror
+
 
 ##### 接下来对于最重要的部分，整合如下：
 
@@ -798,3 +805,9 @@ app.use(require('koa-static')(root, opts));
 ### 总结
 
 ##### 通过上述源码分析对比，我们发现koa2和express都是采用栈式迭代，也就是所谓的洋葱头模式，不同的是koa2的中间件书写逻辑完全采用这种回流机制next()前后均做了一些事情，而express采用的next线性迭代，无可厚非，当路由中间件数目增多的时候都无可厚非的会加长迭代时间，koa2回流机制显的更加明显，摒弃其缺点不说，koa2的框架简洁大气，给了开发者更加开阔的灵活的编程方式，尤其在错误处理和回应各种数据类型方面显的更加人性化，但是express自带路由系统和模板引擎系统，开发更加简便。但是随着ES6、ES7的相继发布，koa2无可厚非成了后期开发的不二选择，当然，萝卜白菜各有所爱，各位大佬根据自己的项目来选择吧！！！
+
+### 热门文章
+
+* [express源码实现](https://segmentfault.com/a/1190000011090124)
+
+* [KOA2框架原理解析和实现](https://www.jianshu.com/p/a64e098ae017)
