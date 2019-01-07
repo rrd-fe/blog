@@ -2,9 +2,10 @@ const koa = require('koa');
 const app = new koa();
 
 app.use(async(ctx, next)=>{
+    console.log(ctx.request.path)
     if(ctx.request.path === '/index'){
         ctx.response.body = '前台页面'
-    }else if(ctx.response.path === '/admin'){
+    }else if(ctx.request.path === '/admin'){
         ctx.response.body = '后台页面'
     }
 })

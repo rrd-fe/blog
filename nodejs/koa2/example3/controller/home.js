@@ -7,6 +7,6 @@ let fn_look = async (ctx, netx)=>{
 }
 
 module.exports = {
-    'GET /login': fn_index,
+    'GET /index': fn_index,
     'GET /look': fn_look
 }

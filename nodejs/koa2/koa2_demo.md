@@ -21,7 +21,7 @@ const app = new koa();
 app.use(async(ctx, next)=>{
     if(ctx.request.path === '/index'){
         ctx.response.body = '前台页面'
-    }else if(ctx.response.path === '/admin'){
+    }else if(ctx.request.path === '/admin'){
         ctx.response.body = '后台页面'
     }
 })
@@ -105,7 +105,7 @@ app.listen(8080,()=>{
     |   |-- router.js
     |-- controller
         |-- admin.js
-        |-- index.js
+        |-- home.js
 ```
 
 controller文件夹中新建home.js用来存放前台页面路由，admin.js存放后台页面路由，接口文件内容如下：
@@ -148,7 +148,7 @@ let fn_look = async (ctx, netx)=>{
 }
 
 module.exports = {
-    'GET /login': fn_index,
+    'GET /index': fn_index,
     'GET /look': fn_look
 }
 ```
@@ -450,7 +450,7 @@ app.keys = ['some secret hurr'];
  
 const CONFIG = {
   key: 'koa:sess', 
-  maxAge: 10000,
+  maxAge: 60*1000,
   renew: false, 
 };
 
@@ -520,7 +520,6 @@ let fn_userLogin = async (ctx, next)=>{
     |   |-- img.js
     |-- static
     |-- template
-        |-- index.html
         |-- index.js
         |-- admin
         |   |-- index
