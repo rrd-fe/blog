@@ -142,15 +142,16 @@
 ### Webview @李锐
 
         内容：
-            1. WebView使用基础
-            2. Java和JS代码相互调用
-            3. Chrome调试及常见错误
+            1. UIWebview和WKWebview的区别
+            2. 能否解决升级风险(有哪些问题)
+            3. 缓存相关
+            4. 性能优化
         产出：
-            一个简单Android加载Webview的Demo
+            WKWebview落地方案
         时间：
-            12月16号-12月26号 Webview基础, WebChromeClient常用方法
-            12月27号-1月4号 Java和JS代码相互调用
-            1月5号-1月10号 产出分享文档
+            1月8号-1月12号 UIWebview和WKWebview的区别
+            1月13号-1月20号 有哪些升级风险是否能解决
+            1月21号-1月30号 缓存和性能优化相关并产出分享文档
 
 * 性能优化 ： Sonic方案落地 【产出：文章、生产环境落地】
 
