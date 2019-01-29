@@ -43,6 +43,8 @@
 ```javascript
 const style = {
     width: '50%',
+    // **注意**，下面这个 height: undefined 样式，在加载 **本地图片** 时，是必须的！
+    height: undefined,
     aspectRatio: 126 / 134,
 };
 //later in render
