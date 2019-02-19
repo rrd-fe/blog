@@ -13,6 +13,7 @@
         ES6中字符串、函数、对象等扩展 (app)
         Proxy、Reflect、Symbol 介绍和在实战中的应用
         JS双向数据绑定
+        css in js 调研
 
 ### typescript ： @王承乾
 
@@ -22,7 +23,7 @@
         产出：文章、落地方案评审
         时间：
             11.26-12.2（本周）
-            （1）阅读ts官方doc，提炼核心用法
+            （1）阅读 ts 官方 doc，提炼核心用法
             （2）产出《typescript--javascript的超集》
 
             12.3-12.9（下周）

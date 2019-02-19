@@ -16,4 +16,6 @@ https://github.com/facebook/react-native/issues/19193
 https://github.com/facebook/react-native/commit/ce8dddb506c336eb40558f04c3b4ef73671d2b97
 
     
+* iOS的手势返回 react-navigation 设置无法取消
 
+* Modal 在 Android机型 无法遮盖StatusBar
