@@ -4,7 +4,7 @@
 ## Quick Start
 
 ### 1. 全局安装commitizen & cz-conventional-changelog
-`commitizen`是一个撰写合格`commit message`的工具，而`cz-conventional-changelog`适配器提供[conventional-changelog](https://github.com/conventional-changelog/conventional-changelog)标准（Angular标准）。基于不同需求，也可以使用不同适配器。
+`commitizen`是一个撰写合格`commit message`的工具，而`cz-conventional-changelog`适配器提供[conventional-changelog](https://github.com/conventional-changelog/conventional-changelog)标准（约定式提交标准）。基于不同需求，也可以使用不同适配器。
 ```
 npm install -g commitizen cz-conventional-changelog
 echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
@@ -75,6 +75,8 @@ echo 'module.exports = {extends: ["@commitlint/config-conventional"]};' > ./comm
 
 ## 扩展阅读
 
-[Angular规范](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines) `必读` 介绍Angular规范每个部分该写什么、该怎么写。
+[conventional commits](https://www.conventionalcommits.org/zh/v1.0.0-beta.3/) `必读` 介绍约定式提交标准
 
-[@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum) `必读` 介绍commitlint的校验规则，以及一些常见passes/fails情况。
+[Angular标准](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines) `必读` 介绍Angular标准每个部分该写什么、该怎么写。
+
+[@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum) `必读` 介绍commitlint的校验规则config-conventional，以及一些常见passes/fails情况。
