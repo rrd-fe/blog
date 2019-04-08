@@ -1,4 +1,25 @@
 
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+* [规范你的 Git Commit Message](#规范你的-git-commit-message)
+	* [Quick Start](#quick-start)
+		* [1. 全局安装commitizen & cz-conventional-changelog](#1-全局安装commitizen-cz-conventional-changelog)
+		* [2. 项目内安装commitlint & husky](#2-项目内安装commitlint-husky)
+		* [3. 配置](#3-配置)
+		* [4. 使用](#4-使用)
+	* [commit规范在rrd-fe落地使用情况](#commit规范在rrd-fe落地使用情况)
+		* [1. type](#1-type)
+		* [2. scope](#2-scope)
+		* [3. body](#3-body)
+		* [4. break changes](#4-break-changes)
+		* [5. affect issues](#5-affect-issues)
+	* [扩展阅读](#扩展阅读)
+
+<!-- /code_chunk_output -->
+
 # 规范你的 Git Commit Message
 
 ## Quick Start
@@ -72,6 +93,50 @@ echo 'module.exports = {extends: ["@commitlint/config-conventional"]};' > ./comm
 填完后，`husky`会调用`commitlint`对message进行格式校验，规定`type`及`subject`为必填项。
 
 任何`git commit`指令的`option`都能用在 `git cz`指令上, 例如`git cz -a`
+
+
+## commit规范在rrd-fe落地使用情况
+
+### 1. type
+
+约定了`feat`、`fix`两个`主要type`，以及docs、style、build、refactor、revert五个`特殊type`，其余type暂不使用。
+```
+# 主要type
+feat:     增加新功能
+fix:      修复bug
+
+# 特殊type
+docs:     只改动了与文档的内容
+style:    不影响代码含义的改动，例如去掉空格、改变缩进、增删分号
+build:    构造工具的或者外部依赖的改动，例如webpack，npm
+refactor: 既不是修复bug，也不是增加新功能
+revert:   执行git revert打印的Message
+
+# 暂不使用type
+test:     添加测试或者修改现有测试
+perf:     提高性能的改动
+ci:       与CI（持续集成服务）有关的改动
+chore:    不修改src或者test的其余修改
+```
+
+当一次改动包括`主要type`与`特殊type`时，统一采用`主要type`。
+
+### 2. scope
+
+约定scope也为必填项，用于描述改动的范围，格式为项目名/模块名，例如：
+`node-pc/common` `rrd-h5/activity`，而`we-sdk`不需指定模块名。
+如果修改多个模块，则需拆分成多次commit。
+
+### 3. body
+
+body一般场景不作要求，但是重大需求、更新等必须添加body来作详细描述，主要描述`改动之前的情况`及`修改动机`。
+
+### 4. break changes
+涉及break changes的改动必须指明该项，类似接口参数减少、接口删除、迁移等。
+
+### 5. affect issues
+需打通jira与gitlab。
+参考文档：https://docs.gitlab.com/ee/user/project/integrations/jira.html
 
 ## 扩展阅读
 
