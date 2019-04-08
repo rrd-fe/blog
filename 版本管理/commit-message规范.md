@@ -9,7 +9,8 @@
 npm install -g commitizen cz-conventional-changelog
 echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
 ```
-安装完毕后，可直接使用`git cz`来取代`git commit`
+安装完毕后，可直接使用`git cz`来取代`git commit`。
+
 全局模式下，需要 `~/.czrc` 配置文件, 为`commitizen`指定`Adapter`。
 
 ### 2. 项目内安装commitlint & husky
