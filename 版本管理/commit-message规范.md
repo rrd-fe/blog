@@ -106,10 +106,10 @@ feat:     增加新功能
 fix:      修复bug
 
 # 特殊type
-docs:     只改动了与文档的内容
+docs:     只改动了文档相关的内容
 style:    不影响代码含义的改动，例如去掉空格、改变缩进、增删分号
 build:    构造工具的或者外部依赖的改动，例如webpack，npm
-refactor: 既不是修复bug，也不是增加新功能
+refactor: 代码重构时使用
 revert:   执行git revert打印的Message
 
 # 暂不使用type
