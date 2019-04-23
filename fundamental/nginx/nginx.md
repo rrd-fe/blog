@@ -140,6 +140,8 @@ server {
 
 ```
 
+此时nginx会把静态资源外的所有请求转发到后端两个服务上, 由默认规则进行负载均衡。并且当访问 http://example.com 时，会重定向到 https://example.com。
+
 参考资料: 
 [Nginx Location 正则表达式](https://www.jianshu.com/p/9fd2ea5b7d12)
 [Nginx 负载均衡策略](https://juejin.im/post/5adc240f51882567336a4f4b)
