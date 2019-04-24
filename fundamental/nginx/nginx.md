@@ -17,11 +17,11 @@ enabled=1
 保存并退出后依次执行`yum update nginx` 和 `yum install nginx`来安装nginx。
 
 
-nginx命令
-nginx 		      # 打开nginx 默认配置文件 /etc/nginx/nginx.conf  通过-c 指定
-nginx -s reload   # 重启
-nginx -s stop     # 停止
-nginx -t -c /etc/nginx/nginx.conf # 测试配置文件 
+**nginx常用命令**
+- nginx `打开nginx 默认配置文件 /etc/nginx/nginx.conf  通过-c 指定`
+- nginx -s reload `重启`
+- nginx -s stop `停止`
+- nginx -t -c /etc/nginx/nginx.conf `测试配置文件`
 
 > 源码安装 
 
@@ -64,7 +64,7 @@ server {
 }
 ```
 
-##3) 监听443端口并设置证书和转发规则**
+**3) 监听443端口并设置证书和转发规则**
 ```shell
 server {
     listen 443;
@@ -96,6 +96,7 @@ server {
 ```
 
 > 以下是所有的配置项
+
 ```shell
 # 默认轮询的负载均衡规则
 upstream nodejs {
