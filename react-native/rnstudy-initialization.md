@@ -316,11 +316,11 @@ callFunctionReturnResultAndFlushedQueue_ =
 
 [这里](https://www.formidable.com/blog/2019/react-codegen-part-1/)有几篇关于RN的开发方向的文章，提到RN之前的架构图是
 
-![RN老架构](.images/old-diagram-full.png)
+![RN老架构](./images/old-diagram-full.png)
 
 RN新的架构图是
 
-![RN新架构](.images/new-diagram-full.png)
+![RN新架构](./images/new-diagram-full.png)
 
 各部分的最新进展为：
 
