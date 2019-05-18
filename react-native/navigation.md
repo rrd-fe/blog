@@ -44,6 +44,9 @@ https://blog.whezh.com/react-native-statusbar/
 
 ## 参考资料
 
+* [react-navigation-vs-react-native-navigation](https://blog.logrocket.com/react-navigation-vs-react-native-navigation-which-is-right-for-you-3d47c1cd1d63)
 * [react-navigation-v1-to-v2](https://shift.infinite.red/upgrading-from-react-navigation-v1-to-v2-312d932329ba)
 * [react-navigation-v2-to-v3](https://medium.com/@snakindiaconsultancy/upgrading-from-react-navigation-v2-to-v3-14f931016a6b)
 * [react-native-navigation-solutions](https://medium.com/osedea/react-native-navigation-solutions-in-2018-6ff1dd7f6d20)
+* [Choosing a Routing Library for React Native](https://medium.com/@ian.mundy/choosing-a-routing-library-for-react-native-604f97e58729)
+* [React Native Navigation Patterns](https://codeburst.io/react-native-navigation-patterns-9c2b6d15ddb3)

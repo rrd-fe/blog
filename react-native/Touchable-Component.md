@@ -6,7 +6,7 @@ RN 官方提供了Touchable系列四个组件，作为按钮响应用户的点�
 * TouchableWithoutFeedback： 只响应点击事件，但没有任何点击反馈
 * TouchableHighlight： 响应点击事件，并且手指按下时可以设置一个背景颜色
 * TouchableOpacity ： 响应点击事件，并且手指按下时可以设置透明度
-* TouchableNativeFeedback ： 响应点击时间，手指按下时有波浪效果（仅Android平台）
+* TouchableNativeFeedback ： 响应点击事件，手指按下时有波浪效果（仅Android平台）
 
 ### TouchableWithoutFeedback
 
