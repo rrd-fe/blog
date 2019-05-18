@@ -35,7 +35,9 @@
 
 如果是新项目直接执行下面命令
 
-        react-native init MyAwesomeProject --template typescript
+```
+$ react-native init MyAwesomeProject --template typescript
+```
 
 如果是老项目迁移TS，因为新版本使用 babel 编译TS，babel 编译并不会读取tsconfig.json中的配置，我们需要将相关配置转移到 babel.config.js 或 .babelrc
 
@@ -47,26 +49,30 @@
 
 具体操作步骤：
 
-    yarn add metro-react-native-babel-preset @babel/plugin-transform-runtime  babel-plugin-module-resolver typescript --dev
+```
+$ yarn add metro-react-native-babel-preset @babel/plugin-transform-runtime  babel-plugin-module-resolver typescript --dev
 
-    yarn add --dev @types/react @types/react-native --dev
+$ yarn add --dev @types/react @types/react-native --dev
+```
 
 babel.config.js 配置如下：
 
-        // babel.config.js
-        module.exports = {
-            "presets": [
-                "module:metro-react-native-babel-preset",
-            ],
-            "plugins": [
-                // 解决TS中的 module 引用问题，下面会详细说明
-                ["module-resolver", {
-                    "root": ["./src"],
-                    "extensions": [".js", ".ts", ".tsx", ".ios.js", ".android.js"]
-                }],
-                "@babel/plugin-transform-runtime",
-            ],
-        }
+```json
+// babel.config.js
+module.exports = {
+    "presets": [
+        "module:metro-react-native-babel-preset",
+    ],
+    "plugins": [
+        // 解决TS中的 module 引用问题，下面会详细说明
+        ["module-resolver", {
+            "root": ["./src"],
+            "extensions": [".js", ".ts", ".tsx", ".ios.js", ".android.js"]
+        }],
+        "@babel/plugin-transform-runtime",
+    ],
+}
+```
 
 当然我们也可以在大于 0.57 版本中继续使用 react-native-typescript-transformer 方式支持 TS，具体的实现步骤[参考这里](https://github.com/ds300/react-native-typescript-transformer#step-3-configure-the-react-native-packager)。
     
@@ -79,53 +85,58 @@ babel.config.js 配置如下：
 
 ### React Hook 中使用 TypeScript
 
-我在另外一篇文章里有详细介绍 Hook 和 TypeScript 的结合，请[移步这里参考]()。
+我在另外一篇文章里有详细介绍 Hook 和 TypeScript 的结合，请[移步这里参考](https://github.com/rrd-fe/blog/blob/master/react/typescript-hooks.md)。
 
 ### TS中使用绝对路径
 
 TS官方支持在 tsconfig 中使用 --baseUrl、--paths 等参数允许我们使用绝对路径引用其他模块，但我们按照官方配置使用会有类似如下错误：
 
+```
+error: bundling failed: Error: Unable to resolve module `page/passport/component/index` from `/Users/wangcheng/work/we/rrd-react-native/src/page/passport/login/component/AccountLoginPage.tsx`: Module `page/passport/component/index` does not exist in the Haste module map
 
-        error: bundling failed: Error: Unable to resolve module `page/passport/component/index` from `/Users/wangcheng/work/we/rrd-react-native/src/page/passport/login/component/AccountLoginPage.tsx`: Module `page/passport/component/index` does not exist in the Haste module map
-
-        This might be related to https://github.com/facebook/react-native/issues/4968
-        To resolve try the following:
-        1. Clear watchman watches: `watchman watch-del-all`.
-        2. Delete the `node_modules` folder: `rm -rf node_modules && npm install`.
-        3. Reset Metro Bundler cache: `rm -rf /tmp/metro-bundler-cache-*` or `npm start -- --reset-cache`.
-        4. Remove haste cache: `rm -rf /tmp/haste-map-react-native-packager-*`.
-            at ModuleResolver.resolveDependency (/Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/node-haste/DependencyGraph/ModuleResolution.js:183:15)
-            at ResolutionRequest.resolveDependency (/Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/node-haste/DependencyGraph/ResolutionRequest.js:52:18)
-            at DependencyGraph.resolveDependency (/Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/node-haste/DependencyGraph.js:283:16)
-            at Object.resolve (/Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/lib/transformHelpers.js:261:42)
-            at dependencies.map.result (/Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/DeltaBundler/traverseDependencies.js:399:31)
-            at Array.map (<anonymous>)
-            at resolveDependencies (/Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/DeltaBundler/traverseDependencies.js:396:18)
-            at /Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/DeltaBundler/traverseDependencies.js:269:33
-            at Generator.next (<anonymous>)
-            at asyncGeneratorStep (/Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/DeltaBundler/traverseDependencies.js:87:24)
+This might be related to https://github.com/facebook/react-native/issues/4968
+To resolve try the following:
+1. Clear watchman watches: `watchman watch-del-all`.
+2. Delete the `node_modules` folder: `rm -rf node_modules && npm install`.
+3. Reset Metro Bundler cache: `rm -rf /tmp/metro-bundler-cache-*` or `npm start -- --reset-cache`.
+4. Remove haste cache: `rm -rf /tmp/haste-map-react-native-packager-*`.
+    at ModuleResolver.resolveDependency (/Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/node-haste/DependencyGraph/ModuleResolution.js:183:15)
+    at ResolutionRequest.resolveDependency (/Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/node-haste/DependencyGraph/ResolutionRequest.js:52:18)
+    at DependencyGraph.resolveDependency (/Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/node-haste/DependencyGraph.js:283:16)
+    at Object.resolve (/Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/lib/transformHelpers.js:261:42)
+    at dependencies.map.result (/Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/DeltaBundler/traverseDependencies.js:399:31)
+    at Array.map (<anonymous>)
+    at resolveDependencies (/Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/DeltaBundler/traverseDependencies.js:396:18)
+    at /Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/DeltaBundler/traverseDependencies.js:269:33
+    at Generator.next (<anonymous>)
+    at asyncGeneratorStep (/Users/wangcheng/work/we/rrd-react-native/node_modules/@react-native-community/cli/node_modules/metro/src/DeltaBundler/traverseDependencies.js:87:24)
+```
 
 其实原因很简单，之前也有提到过，babel 编译期间并没有读取tsconfig，我们的 --baseUrl、--paths 等并没有生效。在babel中我们怎么使用绝对路径引用模块呢， 使用插件[babel-plugin-module-resolver](https://github.com/tleunen/babel-plugin-module-resolver)。
 
 参考配置如下：
 
-        "plugins": [
-            ["module-resolver", {
-                "root": ["./src"],
-                "extensions": [".js", ".ts", ".tsx", ".ios.js", ".android.js"],
-            }],
-            "@babel/plugin-transform-runtime",
-        ]
+```json
+"plugins": [
+    ["module-resolver", {
+        "root": ["./src"],
+        "extensions": [".js", ".ts", ".tsx", ".ios.js", ".android.js"],
+    }],
+    "@babel/plugin-transform-runtime",
+]
+```
 
 遗憾的是按照上面的配置之后，仍然有报错。然后我们在issues里面找到了[相关问题](https://github.com/tleunen/babel-plugin-module-resolver/issues/332)，目前有一个解决方案是在需要作为绝对路径引入的目录增加一个package.json。举个例子：
 
-        // 我们希望 component目录作为绝对路径 如下引用
-        import { slider } from 'component';
+```js
+// 我们希望 component目录作为绝对路径 如下引用
+import { slider } from 'component';
 
-        // 在component目录增加 package.json
-        {
-            "name": "component"
-        }
+// 在component目录增加 package.json
+{
+    "name": "component"
+}
+```
 
 至此终于可以在TS中使用绝对路径引入模块了。
 
@@ -135,39 +146,43 @@ TS官方支持在 tsconfig 中使用 --baseUrl、--paths 等参数允许我们�
 
 * class component 的 default props, TS 3.0 以后支持类的静态属性 defaultProps
 
-        interface PageProps {
-            foo?: string;
-            bar: string;
-        }
+```js
+interface PageProps {
+    foo?: string;
+    bar: string;
+}
 
-        export class PageComponent extends React.Component<PageProps, {}> {
-            public static defaultProps = {
-                foo: "default"
-            };
+export class PageComponent extends React.Component<PageProps, {}> {
+    public static defaultProps = {
+        foo: "default"
+    };
 
-            public render(): JSX.Element {
-                return (
-                    <span>Hello, { this.props.foo.toUpperCase() }</span>
-                );
-            }
-        }
+    public render(): JSX.Element {
+        return (
+            <span>Hello, { this.props.foo.toUpperCase() }</span>
+        );
+    }
+}
+```
 
 * function component的 defaultProps， 组件需要是 StatelessComponent
 
-        interface PageProps {
-            foo?: string;
-            bar: number;
-        }
+```js
+interface PageProps {
+    foo?: string;
+    bar: number;
+}
 
-        const PageComponent: StatelessComponent<PageProps> = (props) => {
-            return (
-                <span>Hello, {props.foo}, {props.bar}</span>
-            );
-        };
+const PageComponent: StatelessComponent<PageProps> = (props) => {
+    return (
+        <span>Hello, {props.foo}, {props.bar}</span>
+    );
+};
 
-        PageComponent.defaultProps = {
-            foo: "default"
-        };
+PageComponent.defaultProps = {
+    foo: "default"
+};
+```
 
 ### metro & babel
 
