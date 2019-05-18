@@ -61,7 +61,7 @@ eventMapping中的信息最终构造出一个eventDriver，这个driver最终会
 
 这个标识RN中的view的viewTag最后只是变成一个唯一字符串而已，那么我们是不是可以不需要这个view，只需要一个唯一的viewTag就可以了呢？
 
-顺着这个思路，我们再看看生成这个唯一的viewTag。我们看一下JS加载UIView的代码
+顺着这个思路，我们再看看生成这个唯一的viewTag。我们看一下JS加载UIView的代码（RN版本0.45.1）
 ```
 mountComponent: function(
   transaction,
@@ -86,6 +86,8 @@ mountComponent: function(
 }
 ```
 我们可以使用ReactNativeTagHandles的allocateTag方法来生成这个viewTag。
+
+> 2019.02.25更新：在RN0.58.5中，由于没有暴露allocateTag()方法，所以只能赋给tag一个大数来作为workaround
 
 到此为止，我们就可以使用AnimatedImplementation中的attachNativeEvent方法来连接Animated.event和Animated.Value了，不必需要在render的时候添加一个无用的view。
 
