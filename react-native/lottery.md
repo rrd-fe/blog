@@ -1,15 +1,15 @@
 
 # 从零开始完成React Native 九宫格抽奖
 
-本文将带着大家从零开始实现一个 React Native 版本的九宫格抽奖转盘，我们先看最终效果图
+本文将介绍从零开始实现一个 React Native 版本的九宫格抽奖转盘，先看最终效果图
 
 ![](https://i.imgur.com/xurl9UM.gif)
 
-可以直接使用[react-native-super-lottery](https://github.com/rrd-fe/react-native-super-lottery)组件开发抽奖功能。
+也可以直接使用[react-native-super-lottery](https://github.com/rrd-fe/react-native-super-lottery)组件开发抽奖功能。
 
 ## 一、布局
 
-布局很简单，我们可以采用flex 3行布局，当然也可以 单行配合 flex-wrap 允许子控件自动折行实现。这里我们直接上代码
+布局很简单，我们可以采用flex 3行布局，也可以单行、配合flex-wrap子控件自动折行实现。直接上代码
 
 ```jsx
 const LotteryStyle = StyleSheet.create({
@@ -43,36 +43,80 @@ function renderItem(item, index, highLightIndex) {
 
 ## 动画
 
-这里重点介绍一下如何实现转盘动画的效果，仔细观察会发现整个转盘动画可以分为三个阶段：
+接下来重点介绍如何实现转盘动画效果，仔细观察会发现整个转盘动画可以分为三个阶段：
 
-1. 抽奖开始转盘加速旋转阶段
-2. 匀速旋转阶段（可能有、可能无，根据后端抽奖响应速度决定）
-3. 转盘降速阶段，逐步停到中奖宫格上
+1. 抽奖开始：转盘加速旋转阶段
+2. 等待抽奖结果：匀速旋转阶段（可能有、可能无，根据后端抽奖接口响应速度决定）
+3. 转盘降速阶段，逐步停到中奖宫格
 
-速度的加速和衰减的曲线决定了转盘旋转的流畅程度。
+九宫格的加速和衰减曲线决定了转盘动画的流畅程度。
 
 实现原理：
 
 **转盘的转动，可以采用 setTimeout 快速修改下一个应该高亮的宫格，从而达到转动的视觉效果**
+
 **旋转的速度其实就是 setTimeout 的interval间隔，interval越大速度越慢**
+
 因此转盘动画的流畅程度实际取决于 setTimeout interval 值变化的连续性
 
-### 方案一：Tween.js 动画库
+### 方案一：手动模拟三个阶段
+
+手动模拟三个阶段大体思路如下：
+
+1. 前 CYCLE_TIMES = 30 次， 每次interval time 递减10ms，转盘逐渐加速
+2. 30次后如果没有返回了抽奖结果，则执行匀速旋转等待后端返回，如果返回了结果执行第三条
+3. 之后 8 次每次interval time 递增20ms，转盘逐渐降速
+4. 中奖前一次速度减80ms
+ 
+下面的伪代码：
+
+```js
+function startLottery() {
+    this.setState({
+        highLightIndex: currentIndex
+    }, () => {
+            this.currentIndex += 1;
+            if (this.currentIndex > CYCLE_TIMES + 8 + this.uniformTimes && this.luckyOrder === currentOrder) {
+                clearTimeout(this.lotteryTimer);
+                // 完成抽奖，展示奖品弹窗等
+            } else {
+                if (this.currentIndex < CYCLE_TIMES) {
+                    //  CYCLE_TIMES = 30 次， 每次速度递加 10ms，
+                    this.speed -= 10;
+                } else if (this.currentIndex > CYCLE_TIMES + 8 + this.uniformTimes && this.luckyOrder === currentOrder + 1) {
+                    // 中奖前一次降速 80 急停效果
+                    this.speed += 80;
+                } else if(this.luckyOrder) {
+                    // 后端为返回结果是匀速旋转
+                    this.uniformTimes += 1;
+                else {
+                    this.speed += 20;
+                }
+                // 确保速度不能低于 50 ms
+                if (this.speed < 50) {
+                    this.speed = 50;
+                }
+                this.lotteryTimer = setTimeout(this.startLottery, this.speed);
+            }
+        }
+    );
+}
+```
+
+### 方案二：Tween.js 动画库
 
 [Tween.js](http://www.createjs.cc/tweenjs/)是一个JavaScript的动画补间库，允许你以平滑的方式更改对象的属性或者某一个特殊的值。你只需告诉它什么属性要更改，当补间结束运行时它们应该具有哪些最终值，需要进过多长时间或者多少次数，补间引擎将负责计算从起始点到结束点任意时间点应该返回的值。
 
 听起来正是我们想要的效果，我们可以如下定义加速、匀速、减速三个动画效果：
 
-
 ```js
-
 function animate(): void{
     TWEEN.update();
 }
 
 // 转盘加速阶段 ： interval 经过20次 从初始值 100（启动速度） 降低到 40 (转盘最高速度) 
 // interval 变化曲线为 TWEEN.Easing.Quadratic.In 
-// 关于 Tween.js 各种曲线 数值变化 可以参考这里 https://sole.github.io/tween.js/examples/03_graphs.html
+// 关于 Tween.js 各种曲线数值变化可以参考这里 https://sole.github.io/tween.js/examples/03_graphs.html
 const speedUpTween = new TWEEN.Tween({ interval: 100 })
     .to({ interval: 40 }, 20)
     .easing(TWEEN.Easing.Quadratic.In)
@@ -123,47 +167,6 @@ const speedDownTween = new TWEEN.Tween({ interval: currentSpeed })
 
 第二个问题是 如果转盘需要支持多次抽奖 speedUpTween、 speedDownTween 等预定义动画需要重新初始化，官方文档里并没有找到类似reset的方法，暂时只能重新生成一遍。
 
-详细三阶段运行效果，可以查看[Demo](https://snack.expo.io/@wangcheng714/tween-demo)
+开源的组件[react-native-supper-lottery](https://github.com/rrd-fe/react-native-super-lottery)目前采用的是方案一。这里提供一个方案二模拟三阶段的[Demo](https://github.com/rrd-fe/react-native-super-lottery/tree/master/example)感兴趣的小伙伴可以仿照实现一版基于Tween.js的动画。
 
-### 方案二：手动模拟三个阶段
-
-```js
-/**
- * 转盘抽奖动画：
- * 1. 前 CYCLE_TIMES = 30 次， 每次速度递加 10ms，
- * 2. 之后 8 次 每次速递递减 20ms
- * 3. 中奖前一次速度减 80ms
- */
-function startLottery() {
-    this.setState({
-        highLightIndex: currentIndex
-    }, () => {
-            this.currentIndex += 1;
-            if (this.currentIndex > CYCLE_TIMES + 8 && this.luckyOrder === currentOrder) {
-                clearTimeout(this.lotteryTimer);
-                // 完成抽奖，展示奖品弹窗等
-            } else {
-                if (this.currentIndex < CYCLE_TIMES) {
-                    //  CYCLE_TIMES = 30 次， 每次速度递加 10ms，
-                    this.speed -= 10;
-                } else if (this.currentIndex > CYCLE_TIMES + 8 && this.luckyOrder === -1) {
-                    // 如果完成加速阶段 还没有拿到抽奖结果则继续匀速运动
-                    this.speed -= 0;
-                } else if (this.currentIndex > CYCLE_TIMES + 8 && this.luckyOrder === currentOrder + 1) {
-                    // 中奖前一次降速 80 急停效果
-                    this.speed += 80;
-                } else {
-                    this.speed += 20;
-                }
-                // 确保速度不能低于 50 ms
-                if (this.speed < 50) {
-                    this.speed = 50;
-                }
-                this.lotteryTimer = setTimeout(this.startLottery, this.speed);
-            }
-        }
-    );
-}
-```
-
-完成了布局和动画等核心功能，之后的封装组件、提供start、stop等抽奖函数就很简单了，这里不再详述。
+完成了布局和动画等核心功能，之后的封装组件提供start、stop等抽奖函数就很简单了，这里不再详述，详细代码可以参考组件[react-native-supper-lottery](https://github.com/rrd-fe/react-native-super-lottery)，也可以直接使用。
