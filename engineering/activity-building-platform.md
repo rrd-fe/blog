@@ -258,7 +258,7 @@ export default {
 
 目前的运营平台，其实主要以`编辑系统`为主，并提供了少量的查询功能。
 
-我们未来会继续迭代，集成`运营监控`、`报警`，`自动生成活动数据报表`等功能。
+我们未来会继续迭代，将继续集成`运营监控`、`报警`，`自动生成活动数据报表`等功能。
 
 同时，为了提高页面加载速度，考虑到活动页面上图片较多、且切图普遍较大的问题，我们即将在`rrd-h5`、`rrd-pc`中引入 `webp` 、`http2`、`service-worker`等。
 
@@ -278,7 +278,7 @@ export default {
 
 由于篇幅有限，活动运营平台的很多具体实现细节并没有过多描述。如果大家有感兴趣的问题，可以留言进行交流。
 
-最后，欢迎大家关注我们的[知乎专栏](https://www.zhihu.com/people/ren-ren-dai-da-qian-duan-ji-zhu-zhong-xin/activities) 或者 [掘金账号](https://juejin.im/user/5cb690b851882532941dd5d9)，我们将每周分享几篇高质量的大前端技术文章。
+最后，欢迎大家star我们的[人人贷大前端团队博客](https://github.com/rrd-fe/blog)，所有的文章还会同步更新到[知乎专栏](https://www.zhihu.com/people/ren-ren-dai-da-qian-duan-ji-zhu-zhong-xin/activities) 和 [掘金账号](https://juejin.im/user/5cb690b851882532941dd5d9)，我们每周都会分享几篇高质量的大前端技术文章。
 
 
 
