@@ -285,6 +285,8 @@ mountComponent: function(
 
 详细代码请移步Github: [https://github.com/rrd-fe/react-native-motion-event-manager](https://github.com/rrd-fe/react-native-motion-event-manager)，觉得不错请给个star :)
 
+最后，欢迎大家star我们的[人人贷大前端团队博客](https://github.com/rrd-fe/blog)，所有的文章还会同步更新到[知乎专栏](https://www.zhihu.com/people/ren-ren-dai-da-qian-duan-ji-zhu-zhong-xin/activities) 和 [掘金账号](https://juejin.im/user/5cb690b851882532941dd5d9)，我们每周都会分享几篇高质量的大前端技术文章。
+
 ## Reference
 
 [https://facebook.github.io/react-native/docs/animations#using-the-native-driver](https://facebook.github.io/react-native/docs/animations#using-the-native-driver)
