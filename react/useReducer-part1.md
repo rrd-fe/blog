@@ -1,5 +1,5 @@
 
-# 这一次彻底搞定 useReducer - reducer 基础篇
+# 这一次彻底搞定useReducer-reducer基础篇
 
 `useReducer`是React提供的一个高级Hook，它不像useEffect、useState、useRef等必须hook一样，没有它我们也可以正常完成需求的开发，但useReducer可以使我们的代码具有更好的可读性、可维护性、可预测性。
 

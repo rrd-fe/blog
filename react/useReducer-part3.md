@@ -3,8 +3,9 @@
 
 欢迎回到我们的useReducer系列第三篇，如果这是你第一次看到这个系列，推荐先看看前两篇：
 
-[useReducer-基础概念篇]()
-[useReducer-使用篇]()
+[useReducer-基础概念篇](https://github.com/rrd-fe/blog/blob/master/react/useReducer-part1.md)
+[useReducer-使用篇](https://github.com/rrd-fe/blog/blob/master/react/useReducer-part2.md)
+[useReducer-配合useContext使用](https://github.com/rrd-fe/blog/blob/master/react/useReducer-part3.md)
 
 上篇文章结尾中提到过使用useReducer，可以帮助我们集中式的处理复杂的state管理。但如果我们的页面很复杂，拆分成了多层多个组件，我们如何在子组件触发这些state变化呢，比如在LoginButton触发登录失败操作？ 
 
