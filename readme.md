@@ -15,6 +15,9 @@
 ### | React
 
 * [TypeScript 中使用React Hook](https://github.com/rrd-fe/blog/blob/master/react/typescript-hooks.md)
+* [这一次彻底搞定useReducer-概念篇](https://github.com/rrd-fe/blog/blob/master/react/useReducer-part1.md)
+* [这一次彻底搞定useReducer-使用篇](https://github.com/rrd-fe/blog/blob/master/react/useReducer-part2.md)
+* [这一次彻底搞定useReducer-进阶篇](https://github.com/rrd-fe/blog/blob/master/react/useReducer-part3.md)
 
 ### | Node.js
 
