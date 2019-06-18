@@ -1,5 +1,5 @@
 
-# 这一次彻底搞定useReducer-reducer基础篇
+# 基于Hook的React状态管理系列-基础篇
 
 `useReducer`是React提供的一个高级Hook，它不像useEffect、useState、useRef等必须hook一样，没有它我们也可以正常完成需求的开发，但useReducer可以使我们的代码具有更好的可读性、可维护性、可预测性。
 
@@ -163,7 +163,7 @@ action：用来表示触发的行为。
 
 下篇文章我们会进入正题：如何使用useReducer简化我们的state管理。
 
-最后惯例，欢迎大家star我们的[人人贷大前端团队博客](https://github.com/rrd-fe/blog)，所有的文章还会同步更新到[知乎专栏](https://www.zhihu.com/people/ren-ren-dai-da-qian-duan-ji-zhu-zhong-xin/activities) 和 [掘金账号](https://juejin.im/user/5cb690b851882532941dd5d9)，我们每周都会分享几篇高质量的大前端技术文章。
+最后惯例，欢迎大家star我们的[人人贷大前端团队博客](https://github.com/rrd-fe/blog)，所有的文章还会同步更新到[知乎专栏](https://www.zhihu.com/people/ren-ren-dai-da-qian-duan-ji-zhu-zhong-xin/activities) 和 [掘金账号](https://juejin.im/user/5cb690b851882532941dd5d9)，我们每周都会分享几篇高质量的大前端技术文章。如果你喜欢这篇文章，希望能动动小手给个赞。
 
 ## 参考资料
 
@@ -172,3 +172,4 @@ action：用来表示触发的行为。
 * https://reactjs.org/docs/hooks-faq.html
 * https://www.robinwieruch.de/react-usereducer-vs-usestate/
 * https://www.robinwieruch.de/react-state-usereducer-usestate-usecontext/
+* https://kentcdodds.com/blog/application-state-management-with-react

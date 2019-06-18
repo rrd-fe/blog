@@ -46,7 +46,7 @@ function Toolbar(props) {
 
 function ThemedButton(props) {
   // 第三步：使用共享 Context
-  const theme = useContext('ThemeContext');
+  const theme = useContext(ThemeContext);
   render() {
     return <Button theme={theme} />;
   }
@@ -124,7 +124,7 @@ function ThemedButton(props) {
     }
     function LoginButton() {
         // 子组件中直接通过context拿到dispatch，出发reducer操作state
-        const dispatch = useContext('LoginContext');
+        const dispatch = useContext(LoginContext);
         const click = () => {
             if (error) {
                 // 子组件可以直接 dispatch action
@@ -160,6 +160,8 @@ function ThemedButton(props) {
 * 如果你的页面`state`比较复杂（state是一个对象或者state非常多散落在各处）请使用userReducer
 * 如果你的页面组件层级比较深，并且需要子组件触发`state`的变化，可以考虑useReducer + useContext
 
+最后惯例，欢迎大家star我们的[人人贷大前端团队博客](https://github.com/rrd-fe/blog)，所有的文章还会同步更新到[知乎专栏](https://www.zhihu.com/people/ren-ren-dai-da-qian-duan-ji-zhu-zhong-xin/activities) 和 [掘金账号](https://juejin.im/user/5cb690b851882532941dd5d9)，我们每周都会分享几篇高质量的大前端技术文章。如果你喜欢这篇文章，希望能动动小手给个赞。
+
 ## 参考资料
 
 * https://github.com/immerjs/immer
@@ -167,3 +169,4 @@ function ThemedButton(props) {
 * https://reactjs.org/docs/hooks-faq.html
 * https://www.robinwieruch.de/react-usereducer-vs-usestate/
 * https://www.robinwieruch.de/react-state-usereducer-usestate-usecontext/
+* https://kentcdodds.com/blog/application-state-management-with-react

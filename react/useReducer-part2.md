@@ -170,15 +170,25 @@ useReducer可以让我们将`what`和`how`分开。比如点击了登录按钮�
 * 如果你需要在深层子组件里面去修改一些状态（关于这点我们下篇文章会详细介绍）
 * 如果你用应用程序比较大，希望UI和业务能够分开维护
 
+这篇文章我们介绍了使用useReducer，帮助我们集中式的处理复杂的state管理。但如果我们的页面很复杂，拆分成了多层多个组件，我们如果在子组件触发这些state变化呢，比如在LoginButton触发登录操作？ 我们将在下篇文章介绍如何处理复杂组件树结构的reducer共享问题。
 
-这篇文章我们介绍了使用useReducer，帮助我们集中式的处理复杂的state管理。但如果我们的页面很复杂，拆分成了多层多个组件，我们如果在子组件触发这些state变化呢，比如在LoginButton触发登录操作？ 我们将在下篇文章介绍如何处理复杂组件树结构的reducer共享问题，欢迎大家关注我们。
+如果有小伙伴看过[thinking-in-react](https://reactjs.org/docs/thinking-in-react.html)可能会有疑问，官方不是推荐State应该有子组件自己维护么，为什么还要集中式的处理？
 
-最后惯例，欢迎大家star我们的[人人贷大前端团队博客](https://github.com/rrd-fe/blog)，所有的文章还会同步更新到[知乎专栏](https://www.zhihu.com/people/ren-ren-dai-da-qian-duan-ji-zhu-zhong-xin/activities) 和 [掘金账号](https://juejin.im/user/5cb690b851882532941dd5d9)，我们每周都会分享几篇高质量的大前端技术文章。
+其实我们并不是推荐所有的state放一起，而是如果确实有很多state跨多个组件公用需要放到page级别维护，这时候可以考虑使用useReducer。
+
+PS：推荐两篇React State管理的文章
+
+* [thinking-in-react](https://reactjs.org/docs/thinking-in-react.html)没看过的小伙伴墙裂推荐一定要看一遍，写的非常的好。
+
+* [application-state-management-with-react](https://kentcdodds.com/blog/application-state-management-with-react)
+
+最后惯例，欢迎大家star我们的[人人贷大前端团队博客](https://github.com/rrd-fe/blog)，所有的文章还会同步更新到[知乎专栏](https://www.zhihu.com/people/ren-ren-dai-da-qian-duan-ji-zhu-zhong-xin/activities) 和 [掘金账号](https://juejin.im/user/5cb690b851882532941dd5d9)，我们每周都会分享几篇高质量的大前端技术文章。如果你喜欢这篇文章，希望能动动小手给个赞。
 
 ## 参考链接
 
-* https://github.com/immerjs/immer
+* https://github.com/immerjs/immera
 * https://reactjs.org/docs/context.html
 * https://reactjs.org/docs/hooks-faq.html
 * https://www.robinwieruch.de/react-usereducer-vs-usestate/
 * https://www.robinwieruch.de/react-state-usereducer-usestate-usecontext/
+* https://kentcdodds.com/blog/application-state-management-with-react
