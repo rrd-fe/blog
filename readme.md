@@ -32,6 +32,7 @@
 ### | 前端工程化
 
 * [运营活动自动化平台实践](https://github.com/rrd-fe/blog/blob/master/engineering/activity-building-platform.md)
+* [Git commit message 规范](https://github.com/rrd-fe/blog/blob/master/git/git-commit-message-norm.md)
 
 ### | 小程序
 
