@@ -501,3 +501,6 @@ console.log(a == 2 && a == 3);//true
 - 如果两边的值中有[]、''或者0，尽量不要使用==
 
 - 最安全的方式可以通过typeof判断
+
+
+最后惯例，欢迎大家star我们的[人人贷大前端团队博客](https://github.com/rrd-fe/blog)，所有的文章还会同步更新到[知乎专栏](https://www.zhihu.com/people/ren-ren-dai-da-qian-duan-ji-zhu-zhong-xin/activities) 和 [掘金账号](https://juejin.im/user/5cb690b851882532941dd5d9)，我们每周都会分享几篇高质量的大前端技术文章。如果你喜欢这篇文章，希望能动动小手给个赞。
