@@ -38,3 +38,7 @@
 
 * [微信小程序踩坑指南](https://github.com/rrd-fe/blog/blob/wx_applet_doc/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B8%A9%E5%9D%91%E6%8C%87%E5%8D%97.md)
 * [小程序打怪之在线客服自动回复功能(node版)](https://github.com/rrd-fe/blog/blob/wx_applet_doc/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%89%93%E6%80%AA%E4%B9%8B%E5%9C%A8%E7%BA%BF%E5%AE%A2%E6%9C%8D%E8%87%AA%E5%8A%A8%E5%9B%9E%E5%A4%8D%E5%8A%9F%E8%83%BD(node%E7%89%88).md)
+
+### | JavaScript
+
+* [深入理解JavaScript的类型转换](https://github.com/rrd-fe/blog/blob/master/javascript/data-type-exchange.md)
