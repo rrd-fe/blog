@@ -63,27 +63,27 @@
 
 - 自增id
 
-  该方法是一种无碰撞的方法，原理是，每新增一个短码，就在上次添加的短码id基础上加1，然后将这个10进制的id值，转化成一个62进制的字符串。
+该方法是一种无碰撞的方法，原理是，每新增一个短码，就在上次添加的短码id基础上加1，然后将这个10进制的id值，转化成一个62进制的字符串。
 
-  一般利用数据表中的自增id来完成：每次先查询数据表中的自增id最大值max，那么需要插入的长网址对应自增id值就是 max+1，将max+1转成62进制即可得到短码。
+一般利用数据表中的自增id来完成：每次先查询数据表中的自增id最大值max，那么需要插入的长网址对应自增id值就是 max+1，将max+1转成62进制即可得到短码。
 
-  但是短码 id 是从一位长度开始递增，短码的长度不固定，不过可以用 id 从指定的数字开始递增的方式来处理，确保所有的短码长度都一致。同时，生成的短码是有序的，可能会有安全的问题，可以将生成的短码id，结合长网址等其他关键字，进行md5运算生成最后的短码。
+但是短码 id 是从一位长度开始递增，短码的长度不固定，不过可以用 id 从指定的数字开始递增的方式来处理，确保所有的短码长度都一致。同时，生成的短码是有序的，可能会有安全的问题，可以将生成的短码id，结合长网址等其他关键字，进行md5运算生成最后的短码。
 
-  10进制转成62进制的具体实现：
+10进制转成62进制的具体实现：
 
 ```javascript
 function string10to62(number) {
-	const chars = '0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ';
-	const charsArr = chars.split('');
-  const radix = chars.length;
-  let qutient = +number;
-  let arr = [];
-  do{
-    let mod = qutient % radix;
-    qutient = (qutient - mod) / radix;
-    arr.unshift(charsArr[mod]);
-  }while(qutient);
-  return arr.join('');
+    const chars = '0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ';
+    const charsArr = chars.split('');
+    const radix = chars.length;
+    let qutient = +number;
+    let arr = [];
+    do{
+        let mod = qutient % radix;
+        qutient = (qutient - mod) / radix;
+        arr.unshift(charsArr[mod]);
+    }while(qutient);
+    return arr.join('');
 }
 ```
 
@@ -91,80 +91,77 @@ function string10to62(number) {
 
 - 摘要算法
 
-  摘要算法又称哈希算法，它表示输入任意长度的数据，输出固定长度的数据。相同的输入数据始终得到相同的输出，不同的输入数据尽量得到不同的输出。
+摘要算法又称哈希算法，它表示输入任意长度的数据，输出固定长度的数据。相同的输入数据始终得到相同的输出，不同的输入数据尽量得到不同的输出。
 
-  算法思路：
+算法思路：
 
-  1、将长网址通过 `md5` 运算，生成 32 字符的 hex string，分为 4 段，每段 8 个字符；
+1、将长网址通过 `md5` 运算，生成 32 字符的 hex string，分为 4 段，每段 8 个字符；
 
-  2、对这四段循环处理，取 8 个字节，将其看成 16 进制串，并与 0x3fffffff(30位1) 与操作，即超过 30 位的忽略处理；
+2、对这四段循环处理，取 8 个字节，将其看成 16 进制串，并与 0x3fffffff(30位1) 与操作，即超过 30 位的忽略处理；
 
-  3、这 30 位分成 6 段，每 5 位的数字作为字母表的索引取得特定字符，依次进行获得 6 位字符串。
+3、这 30 位分成 6 段，每 5 位的数字作为字母表的索引取得特定字符，依次进行获得 6 位字符串。
 
-  4、总的 `md5` 串可以获得 4 个 6 位串，取里面的任意一个就可作为这个长网址的短链接 url 地址。
+4、总的 `md5` 串可以获得 4 个 6 位串，取里面的任意一个就可作为这个长网址的短链接 url 地址。
 
-  虽然几率很小，但是该方法依然存在碰撞的可能性，解决冲突会比较麻烦。不过该方法生成的短码位数，是固定的，也不存在连续生成的短码有序的情况。
+虽然几率很小，但是该方法依然存在碰撞的可能性，解决冲突会比较麻烦。不过该方法生成的短码位数，是固定的，也不存在连续生成的短码有序的情况。
 
 
 
 - 普通随机数
 
-  该方法是从62个字符串中随机取出一个6位短码的组合，然后去数据库中查询该短码是否已存在。如果已存在，就继续循环该方法重新获取短码，否则就直接返回。
+该方法是从62个字符串中随机取出一个6位短码的组合，然后去数据库中查询该短码是否已存在。如果已存在，就继续循环该方法重新获取短码，否则就直接返回。
 
-  该方法是最简单的一种实现，不过由于`Math.round()`方法生成的随机数属于伪随机数，碰撞的可能性也不小。在数据比较多的情况下，可能会循环很多次，才能生成一个不冲突的短码。
+该方法是最简单的一种实现，不过由于`Math.round()`方法生成的随机数属于伪随机数，碰撞的可能性也不小。在数据比较多的情况下，可能会循环很多次，才能生成一个不冲突的短码。
 
-  具体实现：
+具体实现：
 
-  ```
-    // 获取唯一的Link
-    async getShortLink() {
-      const shortLink = this.generateShortLink();
+```
+// 获取唯一的Link
+async getShortLink() {
+    const shortLink = this.generateShortLink();
 
-      // 查询数据库中是否存在该链接，如果存在，就直接返回
-      const searchResult = await this.searchByLinkInMySQL(shortLink);
+    // 查询数据库中是否存在该链接，如果存在，就直接返回
+    const searchResult = await this.searchByLinkInMySQL(shortLink);
 
-      if (searchResult && searchResult.length > 0) {
-        // 如果shortLink已经存在，就遍历重新生成
+    if (searchResult && searchResult.length > 0) {
+    // 如果shortLink已经存在，就遍历重新生成
         return this.getShortLink();
-      }
-      return shortLink;
-
     }
+    return shortLink;
 
-    // 生成随机的Link
-    generateShortLink() {
-      let str = '';
-      const arr = [
+}
+
+// 生成随机的Link
+generateShortLink() {
+    let str = '';
+    const arr = [
         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
         'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-      ];
+    ];
 
-      for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 6; i++) {
         const pos = Math.round(Math.random() * (arr.length - 1));
         str += arr[pos];
-      }
-      return str;
     }
-  ```
+    return str;
+}
+```
 
-  综上，比较推荐使用第一种方法来实现短码的生成。
+综上，比较推荐使用第一种方法来实现短码的生成。
+
+## 广告时间
+
+最后，欢迎大家star我们的[人人贷大前端团队博客](https://github.com/rrd-fe/blog)，所有的文章还会同步更新到[知乎专栏](https://www.zhihu.com/people/ren-ren-dai-da-qian-duan-ji-zhu-zhong-xin/activities) 和 [掘金账号](https://juejin.im/user/5cb690b851882532941dd5d9)，我们每周都会分享几篇高质量的大前端技术文章。
 
 
+## 参考文章
 
-  ## 广告时间
+- [短网址(short URL)系统的原理及其实现](https://segmentfault.com/a/1190000012088345)
 
-  最后，欢迎大家star我们的[人人贷大前端团队博客](https://github.com/rrd-fe/blog)，所有的文章还会同步更新到[知乎专栏](https://www.zhihu.com/people/ren-ren-dai-da-qian-duan-ji-zhu-zhong-xin/activities) 和 [掘金账号](https://juejin.im/user/5cb690b851882532941dd5d9)，我们每周都会分享几篇高质量的大前端技术文章。
+- [短链接系统的算法原理](https://www.cnblogs.com/feiyafeiblog/p/8581853.html)
 
-
-
-  ## 参考文章
-
-  - [短网址(short URL)系统的原理及其实现](https://segmentfault.com/a/1190000012088345)
-
-  - [短链接系统的算法原理](https://www.cnblogs.com/feiyafeiblog/p/8581853.html)
-
-  - [短链接、短网址使用的是什么算法？ - 武林的回答 - 知乎](https://www.zhihu.com/question/20103344/answer/573638467)
+- [短链接、短网址使用的是什么算法？ - 武林的回答 - 知乎](https://www.zhihu.com/question/20103344/answer/573638467)
 
 
 
