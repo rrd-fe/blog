@@ -22,6 +22,7 @@
 ### | Node.js
 
 * [Node.js + ELK 日志规范](https://github.com/rrd-fe/blog/blob/master/nodejs/log-specification.md)
+* [教你怎么实现缩短网址功能](https://github.com/rrd-fe/blog/blob/master/nodejs/short-link-generation.md)
 
 ### | React Native
 
