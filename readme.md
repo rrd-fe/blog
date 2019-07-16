@@ -27,6 +27,7 @@
 
 * [React Native 集成 TypeScript方案和问题总结](https://github.com/rrd-fe/blog/blob/master/react-native/typescript-integrate.md)
 * [从零开始完成React Native九宫格抽奖](https://github.com/rrd-fe/blog/blob/master/react-native/lottery.md)
+* [React Native 实现 App Store Today页效果](./react-native/app-today-page.md)
 * [React Native中如原生般流畅地使用设备传感器](https://github.com/rrd-fe/blog/blob/master/react-native/motion-event.md)
 
 ### | 前端工程化
