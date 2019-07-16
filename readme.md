@@ -22,6 +22,7 @@
 ### | Node.js
 
 * [Node.js + ELK 日志规范](https://github.com/rrd-fe/blog/blob/master/nodejs/log-specification.md)
+* [教你怎么实现缩短网址功能](https://github.com/rrd-fe/blog/blob/master/nodejs/short-link-generation.md)
 
 ### | React Native
 
@@ -29,6 +30,7 @@
 * [从零开始完成React Native九宫格抽奖](https://github.com/rrd-fe/blog/blob/master/react-native/lottery.md)
 * [React Native 实现 App Store Today页效果](./react-native/app-today-page.md)
 * [React Native中如原生般流畅地使用设备传感器](https://github.com/rrd-fe/blog/blob/master/react-native/motion-event.md)
+* [React Native 自定义下拉刷新header组件](https://github.com/rrd-fe/blog/blob/master/react-native/react-native-pulltorefresh.md)
 
 ### | 前端工程化
 
