@@ -1,6 +1,14 @@
 # React Native 实现 App Store Today页效果
 
-本文介绍如何实现利用共享UI元素的动画，实现类似苹果App Store的Today页面的动画效果，老规矩我们先看最终的效果：
+### React Native 动效系列
+
+欢迎大家Star我们的仓库[react-native-showcase](https://github.com/rrd-fe/react-native-showcase)，记录了各种React Native的交互、动画效果。
+
+* [卡片动感光效](https://github.com/rrd-fe/blog/blob/master/react-native/motion-event.md)
+* [九宫格抽奖](https://github.com/rrd-fe/blog/blob/master/react-native/lottery.md)
+* [自定义下拉刷新动画](https://github.com/rrd-fe/blog/blob/master/react-native/react-native-pulltorefresh.md)
+
+本文介绍如何实现利用共享UI元素的动画，实现类似苹果App Store的Today页面的动画效果，我们先看最终的效果：
 
 ![](./assets/today.gif)
 
@@ -13,18 +21,18 @@ UI布局很简单，就是一个普通的ScrollView，我们直接看代码：
     {
         Images.map((image, index) => {
             return (
-            <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT - 150, padding: 15 }}>
-                <Image
-                    source={image}
-                    style={{
-                        height: null,
-                        width: null,
-                        borderRadius: 20,
-                        flex: 1,
-                        resizeMode: 'cover',
-                    }}
-                />
-            </View>
+                <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT - 150, padding: 15 }}>
+                    <Image
+                        source={image}
+                        style={{
+                            height: null,
+                            width: null,
+                            borderRadius: 20,
+                            flex: 1,
+                            resizeMode: 'cover',
+                        }}
+                    />
+                </View>
             );
         })
     }
@@ -203,4 +211,3 @@ const imageAnimationStyle = {
 
 欢迎大家star我们的[人人贷大前端团队博客](https://github.com/rrd-fe/blog)，所有的文章还会同步更新到[知乎专栏](https://www.zhihu.com/people/ren-ren-dai-da-qian-duan-ji-zhu-zhong-xin/activities) 和 [掘金账号](https://juejin.im/user/5cb690b851882532941dd5d9)，我们每周都会分享几篇高质量的大前端技术文章。
 
-最后也欢迎大家star[react-native-showcase](https://github.com/wangcheng714/react-native-showcase)，我们分享一些使用React Native完成的动画特效。
