@@ -59,7 +59,7 @@ function ThemedButton(props) {
 
 ## useContext版login
 
-看完上面Demo，我们在回过头思考如何利用`context`去解决我们问中开头提到的子孙类组件出发reducer状态变化。没错，就是将dispatch函数作为context的value，共享给页面的子组件。
+看完上面Demo，我们在回过头思考如何利用`context`去解决我们问中开头提到的子孙类组件触发reducer状态变化。没错，就是将dispatch函数作为context的value，共享给页面的子组件。
 
 ```js
     // 定义初始化值
@@ -125,7 +125,7 @@ function ThemedButton(props) {
         )
     }
     function LoginButton() {
-        // 子组件中直接通过context拿到dispatch，出发reducer操作state
+        // 子组件中直接通过context拿到dispatch，触发reducer操作state
         const dispatch = useContext(LoginContext);
         const click = () => {
             if (error) {
@@ -146,7 +146,7 @@ function ThemedButton(props) {
 
 1. 对比回调函数的自定义命名，Context的Api更加明确，我们可以更清晰的知道哪些组件使用了dispatch、应用中的数据流动和变化。这也是React一直以来单向数据流的优势。
 
-2. 更好的性能：如果使用回调函数作为参数传递的话，因为每次render函数都会变化，也会导致子组件rerender。当然我们可以使用[useCallback解决这个问题](https://reactjs.org/docs/hooks-faq.html#how-to-read-an-often-changing-value-from-usecallback)，但相比`useCallback`React官方更推荐使用useReducer，因为React会保证dispatch始终是不变的，不会引起consumer组件的rerender。
+2. 更好的性能：如果使用回调函数作为参数传递的话，因为每次render函数都会变化，也会导致子组件rerender。当然我们可以使用[useCallback解决这个问题](https://reactjs.org/docs/hooks-faq.html#how-to-read-an-often-changing-value-from-usecallback)，但相比`useCallback`React官方更推荐使用useReducer，因为React会保证dispatch始终是不变的，不会引起consumer组件的render。
 
 更多信息可以参考官方的FQA：
 
