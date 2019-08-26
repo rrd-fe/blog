@@ -55,7 +55,7 @@ function ThemedButton(props) {
 }
 ```
 
-关于`Context`还有一个比较重要的点是：当Context Provider的value发生变化是，他的所有子级消费者都会rerender。
+关于`Context`还有一个比较重要的点是：当Context Provider的value发生变化是，他的所有子级消费者都会re-render。
 
 ## useContext版login
 
@@ -146,7 +146,7 @@ function ThemedButton(props) {
 
 1. 对比回调函数的自定义命名，Context的Api更加明确，我们可以更清晰的知道哪些组件使用了dispatch、应用中的数据流动和变化。这也是React一直以来单向数据流的优势。
 
-2. 更好的性能：如果使用回调函数作为参数传递的话，因为每次render函数都会变化，也会导致子组件rerender。当然我们可以使用[useCallback解决这个问题](https://reactjs.org/docs/hooks-faq.html#how-to-read-an-often-changing-value-from-usecallback)，但相比`useCallback`React官方更推荐使用useReducer，因为React会保证dispatch始终是不变的，不会引起consumer组件的render。
+2. 更好的性能：如果使用回调函数作为参数传递的话，因为每次render函数都会变化，也会导致子组件re-render。当然我们可以使用[useCallback解决这个问题](https://reactjs.org/docs/hooks-faq.html#how-to-read-an-often-changing-value-from-usecallback)，但相比`useCallback`React官方更推荐使用useReducer，因为React会保证dispatch始终是不变的，不会引起consumer组件的render。
 
 更多信息可以参考官方的FQA：
 

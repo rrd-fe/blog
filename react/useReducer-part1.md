@@ -110,7 +110,7 @@
 
 * React中的state比较方案
 
-React在比较`oldState`和`newState`的时候是使用Object.is函数，如果是同一个对象则不会出发组件的rerender。
+React在比较`oldState`和`newState`的时候是使用Object.is函数，如果是同一个对象则不会触发组件的rerender。
 可以参考官方文档[bailing-out-of-a-dispatch](https://reactjs.org/docs/hooks-reference.html#bailing-out-of-a-dispatch)。
 
 ### action 理解
