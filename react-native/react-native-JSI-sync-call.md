@@ -1,7 +1,7 @@
 
 # JSI小试牛刀——Native同步调用JS代码
 
-[上一篇](https://juejin.im/post/5d7757625188253264365456)有说到在有了JSI之后，JS和Native同时持有一个HostObject，那么JS和Native之间就有了同步调用的基础条件。
+[上一篇](./react-native-JSI.md)有说到在有了JSI之后，JS和Native同时持有一个HostObject，那么JS和Native之间就有了同步调用的基础条件。
 
 ## JS同步调用Native
 
@@ -57,7 +57,7 @@ function  genMethod(moduleID:  number, methodID:  number, type:  MethodType) {
 
 ## Native同步调用JS
 
-有了JSI，我们就可以完成Native向JS的同步调用，现在让我们尝试着实现[上一篇](https://juejin.im/post/5d7757625188253264365456)中说到的ScrollView的onScroll的同步任务。
+有了JSI，我们就可以完成Native向JS的同步调用，现在让我们尝试着实现[上一篇](./react-native-JSI.md)中说到的ScrollView的onScroll的同步任务。
 
 既然JS向Native的同步调用是通过`nativeCallSyncHook`实现的，我们就来实现一个`jsCallSyncHook`吧，从Native线程（包括主线程）能同步调用JS的runtime中的方法。
 
