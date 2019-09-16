@@ -1,14 +1,16 @@
 
 # 从零实现TypeScript版Koa
 
-我们知道Koa框架主要有以下几个重要特性：
+这篇文章会讲些什么？
+
+* 如何从零开始完成一个涵盖Koa核心功能的Node.js类库
+* 从代码层面解释Koa一些代码写法的原因：如中间件为什么必须调用next函数、ctx是怎么来的和一个请求是什么关系
+
+我们知道Koa类库主要有以下几个重要特性：
 
 * 支持洋葱圈模型的中间件机制
 * 封装request、response提供context对象，方便http操作
 * 异步函数、中间件的错误处理机制
-
-本文将由浅到深带领大家使用TS逐步完成一个实现了Koa核心功能的简易框架
-
 
 ### 第一步：基础Server运行
 
@@ -56,9 +58,6 @@ app.listen(3000, () => {
 ```javascript
 app.use(async (req, res, next) => {
   console.log("middleware 1 start");
-  // 这里有两个需要注意的点：
-  // 1、next()函数必须且只能调用一次
-  // 2、调用next函数时必须使用await
   // 具体原因我们会在下面代码实现详细讲解
   await next();
   console.log("middleware 1 end");
@@ -78,7 +77,12 @@ app.listen(3000, () => {
 });
 ```
 
-下面我们来看一看具体怎么实现这种洋葱圈机制：
+上述Demo有三个需要我们注意的点：
+
+* 在中间件中next()函数必须且只能调用一次
+* 调用next函数时必须使用await
+
+我们会在接下来的代码中逐个分析这些使用方法的原因，下面我们来看一看具体怎么实现这种洋葱圈机制：
 
 ```javascript
 class Koa {
@@ -120,13 +124,7 @@ function composeMiddleware(middlewares: middlewareFn[]) {
       start = i;
       const middleware = middlewares[i];
       // 重点来了！！！
-      // 取出第i个中间件执行，并将dispatch(i+1)作为next传给各下一个中间件
-      // 现在我们在回顾之前提出的两个问题：
-      // 1. koa中间件中为什么必须且只能调用一次next函数
-      //  可以看到如果不调用next，下一个中间件就没办法触发，造成假死状态最终请求超时
-      //  调用多次next则会到时下一个中间件执行多次
-      // 2. next() 调用为什么需要加 await
-      //  这也是洋葱圈调用机制的核心，当执行到 await next()，会执行next()【调用下一个中间件】等待返回结果，在接着向下执行
+      // 取出第i个中间件执行，并将dispatch(i+1)作为next函数传给各下一个中间件
       return middleware(req, res, () => {
         return dispatch(i + 1);
       });
@@ -135,6 +133,24 @@ function composeMiddleware(middlewares: middlewareFn[]) {
   };
 }
 ```
+
+主要涉及到Promise几个知识点：
+
+* async 函数返回的是一个Promise对象【所以的中间件都会返回一个promise对象】
+* async 函数内部遇到 await 调用时会暂停执行await函数，等待返回结果后继续向下执行
+* async 函数内部发生错误会导致返回的Promise变为reject状态
+
+现在我们在回顾之前提出的几个问题：
+
+1. koa中间件中为什么必须且只能调用一次next函数
+
+        可以看到如果不调用next，就不会触发dispatch(i+1)，下一个中间件就没办法触发，造成假死状态最终请求超时
+        
+        调用多次next则会导致下一个中间件执行多次
+
+2. next() 调用为什么需要加 await
+      
+        这也是洋葱圈调用机制的核心，当执行到 await next()，会执行next()【调用下一个中间件】等待返回结果，在接着向下执行
 
 ### 第三步：Context提供
 
